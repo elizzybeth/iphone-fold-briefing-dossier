@@ -1,0 +1,1661 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iPhone Fold Briefing Dossier - iFixit Editorial Prep</title>
+  <style>
+    :root {
+      --ink: #17222b;
+      --muted: #52616d;
+      --line: #d8e0e6;
+      --paper: #fbfcfd;
+      --panel: #ffffff;
+      --blue: #176c9d;
+      --green: #2e7d5b;
+      --red: #b0473f;
+      --gold: #9b6a21;
+      --violet: #6454a3;
+      --chip: #edf3f6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.16em;
+    }
+
+    a:hover {
+      color: #0f4f76;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: #f4f8fa;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+    }
+
+    .masthead {
+      padding: 28px 0 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 3.6vw, 4.1rem);
+      line-height: 1.02;
+      letter-spacing: 0;
+      max-width: 13ch;
+    }
+
+    .dek {
+      margin: 0;
+      max-width: 78ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 999px;
+      color: #34454f;
+      font-size: 0.82rem;
+      font-weight: 650;
+      padding: 5px 10px;
+      white-space: nowrap;
+    }
+
+    .toc {
+      border-top: 1px solid var(--line);
+      padding: 10px 0;
+      overflow-x: auto;
+    }
+
+    .toc ul {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      min-width: max-content;
+    }
+
+    .toc a {
+      display: block;
+      padding: 7px 10px;
+      color: #263943;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 26px 0 54px;
+    }
+
+    section {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 24px 0 8px;
+      font-size: 1.05rem;
+      letter-spacing: 0;
+    }
+
+    h4 {
+      margin: 18px 0 6px;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    p {
+      max-width: 86ch;
+    }
+
+    .lead {
+      margin-top: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .note {
+      border-left: 4px solid var(--gold);
+      padding: 10px 12px;
+      background: #fff8ea;
+      color: #4d3a19;
+      max-width: 90ch;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .card h3,
+    .card h4 {
+      margin-top: 0;
+    }
+
+    .card p:last-child,
+    .card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 10px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .chip {
+      background: var(--chip);
+      border: 1px solid #d5e4eb;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 0.82rem;
+      font-weight: 650;
+      color: #334851;
+    }
+
+    .chip a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .chip a:hover {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 14px 0 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      padding: 10px 11px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #eef4f7;
+      color: #30424d;
+      font-size: 0.78rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 0 4px 4px 0;
+      border-radius: 4px;
+      padding: 2px 6px;
+      background: #eef3f5;
+      color: #43545f;
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .tag.blue { background: #e7f2f8; color: #176c9d; }
+    .tag.green { background: #e7f4ed; color: #2e7d5b; }
+    .tag.red { background: #faecea; color: #b0473f; }
+    .tag.gold { background: #fff3dc; color: #805514; }
+    .tag.violet { background: #efedf8; color: #6454a3; }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      margin: 12px 0;
+      padding: 0;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 12px 14px;
+      font-weight: 800;
+      color: #243742;
+    }
+
+    details > div {
+      padding: 0 14px 14px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .mini-diagram {
+      width: 100%;
+      height: auto;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .family-graphic {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0 24px;
+    }
+
+    .family-graphic h3 {
+      margin-top: 0;
+    }
+
+    .family-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 12px;
+    }
+
+    .family-card {
+      background: #fbfdfe;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .family-card h4 {
+      margin: 0 0 4px;
+      font-size: 0.96rem;
+    }
+
+    .family-card p {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .family-card ul,
+    .pro-con {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .family-card li,
+    .pro-con li {
+      margin-bottom: 5px;
+    }
+
+    .family-icon {
+      width: 100%;
+      height: 86px;
+      margin-bottom: 8px;
+    }
+
+    .score-badge {
+      display: inline-block;
+      min-width: 2.6em;
+      border-radius: 4px;
+      padding: 3px 7px;
+      background: #17222b;
+      color: #ffffff;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .chart-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 12px 0 18px;
+      overflow-x: auto;
+    }
+
+    .chart-panel svg {
+      display: block;
+      min-width: 720px;
+      width: 100%;
+      height: auto;
+    }
+
+    .source-list {
+      columns: 2 320px;
+      column-gap: 28px;
+      padding-left: 1.1rem;
+    }
+
+    .source-list li {
+      break-inside: avoid;
+      margin: 0 0 7px;
+    }
+
+    .todo {
+      border-left-color: var(--red);
+      background: #fff4f2;
+      color: #59241f;
+    }
+
+    footer {
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 800px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .source-list {
+        columns: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap masthead">
+      <p class="eyebrow">Working dossier for iFixit editorial, teardown, and event teams</p>
+      <h1>iPhone Fold Briefing Dossier</h1>
+      <p class="dek">A starter reference for the Sept. 8 pre-iPhone Fold press briefing at Lumafield HQ in San Francisco, with source links for iFixit coverage, touch-table planning, foldable history, hinge talking points, rumor confidence notes, and repair-issue patterns from iFixit Answers.</p>
+      <div class="meta">
+        <span class="pill">Prepared Aug. 14, 2026</span>
+        <span class="pill">Event target: Sept. 8, 2026</span>
+        <span class="pill">Status: research draft</span>
+      </div>
+    </div>
+    <nav class="wrap toc" aria-label="Dossier sections">
+      <ul>
+        <li><a href="#quick-reference">Quick Reference</a></li>
+        <li><a href="#touch-tables">Touch Tables</a></li>
+        <li><a href="#history">Form-Factor History</a></li>
+        <li><a href="#repairability-scores">Repairability Scores</a></li>
+        <li><a href="#iphone-fold">iPhone Fold Rumors</a></li>
+        <li><a href="#hinges">Hinges</a></li>
+        <li><a href="#answers">Repair Issues</a></li>
+        <li><a href="#assets-to-create">Assets to Create</a></li>
+        <li><a href="#open-items">Open Items</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section id="quick-reference">
+      <h2>Quick Reference: iFixit Folding Phone Coverage</h2>
+      <p class="lead">Working inventory of public iFixit teardown, video, device, repairability, wallpaper, and analysis links related to folding smartphones. This should be treated as the press room launchpad: first stop for fact-checking talks, printed labels, and artifact captions.</p>
+      <p class="note">Scope note: iFixit uses a mix of teardown guides, News posts, YouTube-first posts, and device pages. Rows marked "device page" point to the iFixit repair hub when the teardown is embedded there rather than published as a standalone step-by-step guide.</p>
+
+      <h3>Teardowns And Videos</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Device / topic</th>
+              <th>Date</th>
+              <th>Form factor</th>
+              <th>iFixit.com</th>
+              <th>YouTube</th>
+              <th>Event note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Samsung Galaxy Fold</strong></td>
+              <td>Apr. 24 / Oct. 10, 2019</td>
+              <td>Inward book fold</td>
+              <td><a href="https://www.ifixit.com/Device/Samsung_Galaxy_Fold">Device page</a>; <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">Teardown guide</a>; <a href="https://www.ifixit.com/News/16087/samsung-galaxy-fold-teardown">initial News post</a>; <a href="https://www.ifixit.com/News/33277/what-did-samsung-change-in-the-galaxy-fold-find-out-in-our-galaxy-fold-video-teardown-en">retail video post</a></td>
+              <td><a href="https://www.youtube.com/watch?v=vjSeDv5J5_o">Galaxy Fold teardown - Did they fix it?</a></td>
+              <td><span class="tag red">origin story</span> Dust gaps, screen fragility, revised retail hardware.</td>
+            </tr>
+            <tr>
+              <td><strong>Motorola Razr 2020</strong></td>
+              <td>Feb. 13, 2020</td>
+              <td>Vertical clamshell</td>
+              <td><a href="https://www.ifixit.com/Device/Motorola_razr">Device page</a>; <a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414">Teardown guide</a>; <a href="https://www.ifixit.com/News/35662/reflections-razr-teardown">Reflections on the teardown</a>; <a href="https://www.ifixit.com/News/35577/unfold-the-insides-of-your-motorola-razr-with-these-wallpapers">wallpapers</a></td>
+              <td><a href="https://www.youtube.com/watch?v=qbwSJtF0kfU">Motorola Razr teardown</a></td>
+              <td><span class="tag violet">hinge table</span> Complex hinge and support plates; good clamshell artifact.</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung Galaxy Z Flip</strong></td>
+              <td>Feb. 18, 2020</td>
+              <td>Vertical clamshell</td>
+              <td><a href="https://www.ifixit.com/Device/Samsung_Galaxy_Z_Flip">Device page</a>; <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002">Teardown guide</a>; <a href="https://www.ifixit.com/News/35652/dont-flip-out-weve-got-galaxy-z-flip-wallpapers">wallpapers</a></td>
+              <td><a href="https://www.youtube.com/watch?v=fUKETvXnixA">Galaxy Z Flip teardown</a></td>
+              <td><span class="tag red">dust test</span> "Ultra thin glass" expectations versus scratch reality; fiber shield demo.</td>
+            </tr>
+            <tr>
+              <td><strong>Huawei Mate Xs</strong></td>
+              <td>Mar. 20, 2020</td>
+              <td>Outward book fold</td>
+              <td><a href="https://www.ifixit.com/Device/Huawei_Mate_Xs">Device page</a>; <a href="https://www.ifixit.com/Teardown/Huawei+Mate+Xs+Teardown/132809">Teardown guide</a></td>
+              <td><a href="https://www.youtube.com/watch?v=RHANGBOv05g">Huawei Mate Xs teardown</a></td>
+              <td><span class="tag violet">shape experiment</span> Outward-folding screen and Falcon Wing hinge contrast with inward book folds.</td>
+            </tr>
+            <tr>
+              <td><strong>Microsoft Surface Duo</strong></td>
+              <td>Sept. 11, 2020</td>
+              <td>Rigid dual-screen fold</td>
+              <td><a href="https://www.ifixit.com/Device/Microsoft_Surface_Duo">Device page</a>; <a href="https://www.ifixit.com/Teardown/Microsoft+Surface+Duo+Teardown/136576">Teardown guide</a></td>
+              <td><a href="https://www.youtube.com/watch?v=zlnGioihopQ">Surface Duo teardown</a></td>
+              <td><span class="tag blue">control group</span> Folding phone without flexible OLED; useful contrast for hinge/display tables.</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung Galaxy Z Fold2</strong></td>
+              <td>Sept. 18, 2020</td>
+              <td>Inward book fold</td>
+              <td><a href="https://www.ifixit.com/Device/Samsung_Galaxy_Z_Fold2">Device page</a>; <a href="https://www.ifixit.com/News/44028/see-samsungs-rebooted-galaxy-z-fold-2-come-apart-in-our-teardown">News/video post</a>; <a href="https://www.ifixit.com/News/44073/bring-out-the-galaxy-z-fold-2s-detailed-insides-with-wallpapers-x-ray-too">wallpapers and X-ray</a></td>
+              <td><a href="https://www.youtube.com/watch?v=w3AixkeBJvg">Galaxy Z Fold2 teardown</a></td>
+              <td><span class="tag green">iteration</span> Sweeper, hinge, screen-protection iteration after first Fold.</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung Galaxy Z Flip3 and Z Fold3</strong></td>
+              <td>Sept. 2 / 16, 2021</td>
+              <td>Clamshell and book fold</td>
+              <td><a href="https://www.ifixit.com/Device/Samsung_Galaxy_Z_Flip3">Z Flip3 device page</a>; <a href="https://www.ifixit.com/Device/Samsung_Galaxy_Z_Fold3">Z Fold3 device page</a>; <a href="https://www.ifixit.com/News/52399/galaxy-z-flip-fold-3-small-changes-make-a-big-difference">News/video post</a>; <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip3+Teardown/144856">Z Flip3 guide</a>; <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Fold3+Teardown/144857">Z Fold3 guide</a></td>
+              <td><a href="https://www.youtube.com/watch?v=aGCaJ4NOc0w">Z Flip and Fold3 teardown</a></td>
+              <td><span class="tag blue">IPX8</span> Water resistance arrives, but repair glue burden remains.</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung Galaxy Z Flip4 and Z Fold4</strong></td>
+              <td>Aug. 30, 2022</td>
+              <td>Clamshell and book fold</td>
+              <td><a href="https://www.ifixit.com/Device/Samsung_Galaxy_Z_Flip_4">Z Flip4 device page</a>; <a href="https://www.ifixit.com/Device/Samsung_Galaxy_Fold_4">Z Fold4 device page</a>; <a href="https://www.ifixit.com/News/64317/reviewers-say-the-future-of-phones-is-foldable-is-it-repairable-too">Foldables May Be the Future But Will They Last?</a></td>
+              <td><a href="https://www.youtube.com/watch?v=fUWJIYvw9Rk">Samsung Z Flip and Fold4 teardown</a></td>
+              <td><span class="tag red">wear simulator</span> Dust and hinge crunch are strong live-demo talking points.</td>
+            </tr>
+            <tr>
+              <td><strong>Google Pixel Fold</strong></td>
+              <td>July 17, 2023</td>
+              <td>Inward book fold</td>
+              <td><a href="https://www.ifixit.com/Device/Google_Pixel_Fold">Device page with teardown, guides, manuals, parts</a></td>
+              <td><a href="https://www.youtube.com/watch?v=DoeuyCIBGzM">Inside Google's first foldable phone</a></td>
+              <td><span class="tag green">repair ecosystem</span> Strong comparison point because it has public manuals and parts.</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung Galaxy Z Fold5</strong></td>
+              <td>Aug. 16, 2023</td>
+              <td>Inward book fold</td>
+              <td><a href="https://www.ifixit.com/Device/Samsung_Galaxy_Fold5">Device page</a>; <a href="https://www.ifixit.com/News/79649/galaxy-z-fold5-and-z-flip5-wallpapers">wallpapers</a></td>
+              <td><a href="https://www.youtube.com/watch?v=gGhEPgw60Rc">Still no dust proofing</a></td>
+              <td><span class="tag red">hinge risk</span> Gapless/waterdrop direction, but dust still central.</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung Galaxy Z Flip5</strong></td>
+              <td>Aug. 18, 2023</td>
+              <td>Vertical clamshell</td>
+              <td><a href="https://www.ifixit.com/Device/Samsung_Galaxy_Z_Flip_5">Device page with teardown link</a>; <a href="https://www.ifixit.com/News/79649/galaxy-z-fold5-and-z-flip5-wallpapers">wallpapers</a></td>
+              <td><a href="https://www.youtube.com/watch?v=sk-11ZZLBSo">A folding phone to grind your gears</a></td>
+              <td><span class="tag red">dust</span> Use for "dust resistance is not the same as dustproofing" captions.</td>
+            </tr>
+            <tr>
+              <td><strong>Google Pixel 9 Pro Fold</strong></td>
+              <td>Sept. 13, 2024</td>
+              <td>Inward book fold</td>
+              <td><a href="https://www.ifixit.com/Device/Google_Pixel_9_Pro_Fold">Device page</a>; <a href="https://www.ifixit.com/News/100082/googles-pixel-9-pro-fold-nudges-foldables-toward-repairability">News/video post</a>; <a href="https://www.ifixit.com/repairability/smartphone-repairability-scores">repairability score page</a></td>
+              <td><a href="https://www.youtube.com/watch?v=xNKCg6aJJLE">Pixel 9 Pro Fold teardown</a></td>
+              <td><span class="tag green">repairable direction</span> Modular USB-C, manuals, parts, adhesives that release without heat.</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung Galaxy Z Fold7</strong></td>
+              <td>Aug. 5, 2025</td>
+              <td>Inward book fold</td>
+              <td><a href="https://www.ifixit.com/Device/Samsug_Galaxy_Z_Fold_7">Device page with teardown link</a></td>
+              <td><a href="https://www.youtube.com/watch?v=9KhF6emBjbE">Beautiful, fragile, and a repair nightmare</a></td>
+              <td><span class="tag gold">thinness tradeoff</span> Great table piece for how slimness competes with repairability.</td>
+            </tr>
+            <tr>
+              <td><strong>Samsung Galaxy Z Fold8</strong></td>
+              <td>Aug. 13, 2026</td>
+              <td>Compact book fold</td>
+              <td><a href="https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem">Galaxy Z Fold8 teardown article</a></td>
+              <td><a href="https://www.youtube.com/watch?v=bg6iwM4LoVA">Galaxy Z Fold8 teardown video</a></td>
+              <td><span class="tag red">current hook</span> Fresh dust/hinge evidence and Lumafield CT angle for the Sept. 8 event.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>iFixit Articles And Context Pieces</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Title</th>
+              <th>Why it matters for the briefing</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Apr. 17, 2019</td>
+              <td><a href="https://www.ifixit.com/News/15681/samsungs-galaxy-folds-are-breaking-after-only-a-few-days">Samsung's Galaxy Folds Are Breaking After Only a Few Days</a></td>
+              <td>Documents the launch crisis before the public teardown became the definitive engineering explanation.</td>
+            </tr>
+            <tr>
+              <td>Apr. 23, 2019</td>
+              <td><a href="https://www.ifixit.com/News/16025/galaxy-fold-failure-causes">Here's Why We Think Galaxy Folds Are Failing</a></td>
+              <td>Early diagnosis of debris entry, removable-looking display layers, and fragile screen behavior.</td>
+            </tr>
+            <tr>
+              <td>Apr. 24, 2019</td>
+              <td><a href="https://www.ifixit.com/News/16087/samsung-galaxy-fold-teardown">Samsung Galaxy Fold: Yep, We Tore It Down</a></td>
+              <td>Original teardown framing for why foldables are unusually hard to protect and repair.</td>
+            </tr>
+            <tr>
+              <td>Apr. 25, 2019</td>
+              <td><a href="https://www.ifixit.com/News/16155/samsung-galaxy-fold-teardown-wallpapers">Samsung Galaxy Fold Teardown Wallpapers</a></td>
+              <td>Printable internal visuals and "see-through" assets for museum-style display labels.</td>
+            </tr>
+            <tr>
+              <td>Apr. 25, 2019</td>
+              <td><a href="https://www.ifixit.com/News/16189/about-our-galaxy-fold-teardown">About Our Galaxy Fold Teardown</a></td>
+              <td>Background on the removed teardown and why iFixit waited for a retail unit.</td>
+            </tr>
+            <tr>
+              <td>Oct. 10, 2019</td>
+              <td><a href="https://www.ifixit.com/News/33277/what-did-samsung-change-in-the-galaxy-fold-find-out-in-our-galaxy-fold-video-teardown-en">What Did Samsung Change in the Galaxy Fold?</a></td>
+              <td>Best source for "first-gen failure, revised design" before-and-after messaging.</td>
+            </tr>
+            <tr>
+              <td>Oct. 2019</td>
+              <td><a href="https://www.ifixit.com/News/33364/galaxy-fold-apple-u1-chip-making-louvers-repair-radio-episode-12">Repair Radio: Galaxy Fold and Apple U1</a></td>
+              <td>Audio context if someone wants host/panel talking points from the time.</td>
+            </tr>
+            <tr>
+              <td>Dec. 12, 2019</td>
+              <td><a href="https://www.ifixit.com/News/34271/official-galaxy-fold-repair-manual-confirms-this-thing-is-no-fun-to-fix">Official Galaxy Fold Repair Manual Confirms: This Thing Is No Fun to Fix</a></td>
+              <td>Repair-procedure evidence: special tools, heat, suction, manual complexity.</td>
+            </tr>
+            <tr>
+              <td>Feb. 11, 2020</td>
+              <td><a href="https://www.ifixit.com/News/35543/how-pocketable-is-the-motorola-razr">How Pocketable Is the Motorola Razr?</a></td>
+              <td>Useful for "why clamshells came back" and pocketability display text.</td>
+            </tr>
+            <tr>
+              <td>Feb. 13, 2020</td>
+              <td><a href="https://www.ifixit.com/News/35577/unfold-the-insides-of-your-motorola-razr-with-these-wallpapers">Unfold the Insides of Your Motorola Razr With These Wallpapers</a></td>
+              <td>Printable internal assets for clamshell table.</td>
+            </tr>
+            <tr>
+              <td>Feb. 2020</td>
+              <td><a href="https://www.ifixit.com/News/35652/dont-flip-out-weve-got-galaxy-z-flip-wallpapers">Don't Flip Out: We've Got Galaxy Z Flip Wallpapers</a></td>
+              <td>Printable Z Flip internal visuals.</td>
+            </tr>
+            <tr>
+              <td>Feb. 2020</td>
+              <td><a href="https://www.ifixit.com/News/35662/reflections-razr-teardown">Reflections on Our Motorola Razr Teardown</a></td>
+              <td>Good narrative piece on the Razr's strange, complex engineering.</td>
+            </tr>
+            <tr>
+              <td>Feb. 27, 2020</td>
+              <td><a href="https://www.youtube.com/watch?v=VNQnTux87xs">Motorola Razr vs Galaxy Z Flip: Foldable Teardown Roundup</a></td>
+              <td>YouTube context piece comparing the first clamshell-style flexible-display teardowns.</td>
+            </tr>
+            <tr>
+              <td>Sept. 18, 2020</td>
+              <td><a href="https://www.ifixit.com/News/44028/see-samsungs-rebooted-galaxy-z-fold-2-come-apart-in-our-teardown">See Samsung's Rebooted Galaxy Z Fold2 Come Apart</a></td>
+              <td>Second-generation foldable anatomy and improved-but-still-difficult design.</td>
+            </tr>
+            <tr>
+              <td>Sept. 2020</td>
+              <td><a href="https://www.ifixit.com/News/44073/bring-out-the-galaxy-z-fold-2s-detailed-insides-with-wallpapers-x-ray-too">Galaxy Z Fold2 Wallpapers and X-ray</a></td>
+              <td>Excellent print asset candidate for the museum wall.</td>
+            </tr>
+            <tr>
+              <td>Aug. 11, 2021</td>
+              <td><a href="https://www.ifixit.com/News/52084/samsungs-flipping-bad-foldable-idea-add-more-glue">Samsung's Flipping Bad Foldable Idea: Add More Glue</a></td>
+              <td>Repairability critique for water resistance strategy and cured-in-place gaskets.</td>
+            </tr>
+            <tr>
+              <td>Sept. 2, 2021</td>
+              <td><a href="https://www.ifixit.com/News/52399/galaxy-z-flip-fold-3-small-changes-make-a-big-difference">Galaxy Z Flip and Fold3: Small Changes Make a Big Difference</a></td>
+              <td>Best iFixit source for water-resistance progress and remaining repair penalty.</td>
+            </tr>
+            <tr>
+              <td>Dec. 15, 2021</td>
+              <td><a href="https://www.ifixit.com/News/56128/ifixits-most-interesting-teardown-finds-of-2021">iFixit's Most Interesting Teardown Finds of 2021</a></td>
+              <td>Short summary of how Samsung made the Z Flip3 water resistant.</td>
+            </tr>
+            <tr>
+              <td>Aug. 14, 2022</td>
+              <td><a href="https://www.ifixit.com/News/63973/playing-doom-on-a-john-deere-and-why-it-matters-repair-roundup-week-of-august-14">Repair Roundup: Fold4 and Flip4 repair pricing</a></td>
+              <td>Useful background on manufacturer repair economics around foldables.</td>
+            </tr>
+            <tr>
+              <td>Aug. 30, 2022</td>
+              <td><a href="https://www.ifixit.com/News/64317/reviewers-say-the-future-of-phones-is-foldable-is-it-repairable-too">If Foldable Phones Are the Future, Are They Really Built to Last?</a></td>
+              <td>Strongest public iFixit argument tying foldable enthusiasm to durability doubts.</td>
+            </tr>
+            <tr>
+              <td>July 17, 2023</td>
+              <td><a href="https://www.youtube.com/watch?v=DoeuyCIBGzM">Google Pixel Fold Teardown: Inside Google's First Foldable Phone</a></td>
+              <td>YouTube-first teardown entry; pair with the Pixel Fold device page and repair manual.</td>
+            </tr>
+            <tr>
+              <td>Aug. 16, 2023</td>
+              <td><a href="https://www.youtube.com/watch?v=gGhEPgw60Rc">Galaxy Z Fold5 Teardown: Still No Dust Proofing</a></td>
+              <td>YouTube-first teardown entry with a direct dustproofing message.</td>
+            </tr>
+            <tr>
+              <td>Aug. 18, 2023</td>
+              <td><a href="https://www.youtube.com/watch?v=sk-11ZZLBSo">Galaxy Z Flip5 Teardown: A Folding Phone to Grind Your Gears</a></td>
+              <td>YouTube-first teardown entry and hinge-grit headline.</td>
+            </tr>
+            <tr>
+              <td>Aug. 18, 2023</td>
+              <td><a href="https://www.ifixit.com/News/79649/galaxy-z-fold5-and-z-flip5-wallpapers">Galaxy Z Fold5 and Z Flip5 Wallpapers</a></td>
+              <td>Fresh print assets for display tables.</td>
+            </tr>
+            <tr>
+              <td>Dec. 2023</td>
+              <td><a href="https://www.ifixit.com/News/87752/2023-teardown-highlights">2023 Repairability Wins Were Compromised By Parts Pairing</a></td>
+              <td>Includes the Z Fold5 as a disappointment because dustproofing was still absent.</td>
+            </tr>
+            <tr>
+              <td>Sept. 13, 2024</td>
+              <td><a href="https://www.ifixit.com/News/100082/googles-pixel-9-pro-fold-nudges-foldables-toward-repairability">Google's Pixel 9 Pro Fold Nudges Foldables Toward Repairability</a></td>
+              <td>Repairability-forward comparison point: manuals, parts, modularity, and heat-free adhesive starts.</td>
+            </tr>
+            <tr>
+              <td>Aug. 5, 2025</td>
+              <td><a href="https://www.youtube.com/watch?v=9KhF6emBjbE">Z Fold7 Teardown! Beautiful, Fragile, and a Repair Nightmare</a></td>
+              <td>YouTube-first teardown entry for thinness and repair tradeoffs.</td>
+            </tr>
+            <tr>
+              <td>Sept. 16, 2025</td>
+              <td><a href="https://www.ifixit.com/News/113047/about-that-iphone-air-battery">About That iPhone Air Battery</a></td>
+              <td>iPhone Air as foldable-adjacent battery/thinness context before Apple's foldable.</td>
+            </tr>
+            <tr>
+              <td>Sept. 20, 2025</td>
+              <td><a href="https://www.ifixit.com/News/113171/iphone-air-teardown">iPhone Air Teardown</a></td>
+              <td>Apple thin-phone architecture likely to be discussed as a foldable proving ground.</td>
+            </tr>
+            <tr>
+              <td>Aug. 13, 2026</td>
+              <td><a href="https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem">Galaxy Z Fold8 Teardown: Samsung's Best Foldable Still Has a Hinge Problem</a></td>
+              <td>Freshest comparison for the press event: hinge dust, CT scans, Flex Titanium, and repair score framing.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="touch-tables">
+      <h2>Touch Tables And Printed Display Starting Plan</h2>
+      <p class="lead">The Slack inventory already suggests four table stories: a foldable museum, hinges, display architecture, and size/shape experiments. The cleanest event layout is to make each table answer one tactile question.</p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>1. Foldable Museum</h3>
+          <p><strong>Question:</strong> How did we get from flip phones to bendable glass rectangles?</p>
+          <ul>
+            <li>Use <a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414#s255814">Razr 2020</a>, <a href="https://www.ifixit.com/Teardown/Microsoft+Surface+Duo+Teardown/136576#s271489">Surface Duo</a>, <a href="https://www.ifixit.com/Device/Google_Pixel_9_Pro_Fold">Pixel 9 Pro Fold</a>, <a href="https://www.ifixit.com/Device/Samsung_Galaxy_Fold">Galaxy Z Fold</a>, and <a href="https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem">Galaxy Z Fold8</a>.</li>
+            <li>Print a form-factor timeline with one phrase per era: pocketability, messaging, dual screens, flexible OLED, waterdrop hinge, repairability. Pull print candidates from <a href="https://www.ifixit.com/News/16155/samsung-galaxy-fold-teardown-wallpapers">Galaxy Fold wallpapers</a>, <a href="https://www.ifixit.com/News/35577/unfold-the-insides-of-your-motorola-razr-with-these-wallpapers">Razr wallpapers</a>, <a href="https://www.ifixit.com/News/44073/bring-out-the-galaxy-z-fold-2s-detailed-insides-with-wallpapers-x-ray-too">Z Fold2 wallpapers/X-ray</a>, and <a href="https://www.ifixit.com/News/79649/galaxy-z-fold5-and-z-flip5-wallpapers">Z Fold5/Z Flip5 wallpapers</a>.</li>
+            <li>Add "what changed" callouts: display material, hinge type, dust strategy, repair parts.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>2. Hinge Table</h3>
+          <p><strong>Question:</strong> Why is a phone hinge not just a tiny door hinge?</p>
+          <ul>
+            <li>Show intact hinges from book folds and clamshells side by side.</li>
+            <li>Pair each with a one-line job: synchronize halves, preserve bend radius, support screen, block grit, route cables.</li>
+            <li>Loop Shahram's CT stop motions when ready; pair with iFixit's <a href="https://www.ifixit.com/News/109137/a-guide-to-reading-ct-scans-part-1-what-is-ct">CT scan primer</a> and Lumafield's <a href="https://www.lumafield.com/case-studies/customer-story-ifixit">iFixit customer story</a>.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>3. Display Architecture</h3>
+          <p><strong>Question:</strong> What does a folding screen need that a slab screen does not?</p>
+          <ul>
+            <li>Use the <a href="https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem">Fold8 screen layers</a> as the anchor artifact; add Samsung's <a href="https://api.samsungmobilepress.com/press-releases/galaxy-z-fold8-ultra-fold8-flip8-perfected-every-way-living">Fold8 launch/design context</a> for manufacturer claims.</li>
+            <li>Show UTG, polymer top layers, polarizer/touch/OLED layers, adhesive, support plates, hinge covers; use <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600#s236381">Galaxy Fold display-step photos</a> and the <a href="https://www.ifixit.com/Guide/Google+Pixel+9+Pro+Fold+Inner+Screen+Asssembly+Replacement/176926">Pixel 9 Pro Fold inner screen guide</a> as support references.</li>
+            <li>Print cross-section labels and show where the screen is most vulnerable to dents, dust, and repeated flexing.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>4. Shape Experiments</h3>
+          <p><strong>Question:</strong> Which foldable shape solved a real pocket or screen problem?</p>
+          <ul>
+            <li><a href="https://en-emea.support.motorola.com/app/answers/detail/a_id/148198/~/razr-specifications">Razr</a> for clamshell, <a href="https://support.microsoft.com/en-us/surface/models/surface-duo-1st-gen-features-and-specs">Surface Duo</a> for rigid dual screen, <a href="https://consumer.huawei.com/ie/phones/mate-x-s/specs/">Mate XS</a> for outward fold, and <a href="https://support.google.com/pixelphone/answer/7158570?hl=en">Pixel foldables</a> / <a href="https://www.ifixit.com/Device/Google_Pixel_Fold">iFixit Pixel Fold hub</a> for book style.</li>
+            <li>Include a "why it did or did not spread" label for each shape.</li>
+            <li>Keep one interactive station for folded, half-open, and fully open ergonomics.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>Current Artifact Inventory From Slack</h3>
+      <ul class="chips">
+        <li class="chip"><a href="https://www.ifixit.com/Device/Samsung_Galaxy_Fold">Galaxy Z Fold</a></li>
+        <li class="chip"><a href="https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem">Galaxy Z Fold8</a></li>
+        <li class="chip"><a href="https://www.samsungmobilepress.com/articles/first-look-galaxy-z-fold8-ultra-galaxy-z-fold8-galaxy-z-flip8">Galaxy Z Fold8 Ultra</a></li>
+        <li class="chip"><a href="https://www.ifixit.com/Device/Microsoft_Surface_Duo">Microsoft Surface Duo</a></li>
+        <li class="chip"><a href="https://consumer.huawei.com/cn/phones/pura-x-max/">Huawei Pura X Max</a></li>
+        <li class="chip"><a href="https://www.ifixit.com/Device/Huawei_Mate_Xs">Huawei Mate XS</a></li>
+        <li class="chip"><a href="https://www.oppo.com/en/smartphones/series-find-n/find-n6/">Oppo Find N6</a></li>
+        <li class="chip"><a href="https://www.ifixit.com/Device/Motorola_razr">Motorola Razr 2020</a></li>
+        <li class="chip"><a href="https://en-us.support.motorola.com/app/answers/prod_answer_detail/a_id/180942/p/11160">Motorola Razr 2024</a></li>
+        <li class="chip"><a href="https://www.ifixit.com/Device/Google_Pixel_9_Pro_Fold">Google Pixel 9 Pro Fold</a></li>
+        <li class="chip"><a href="https://support.google.com/pixelphone/answer/7158570?hl=en">Google Pixel 11 Pro Fold</a></li>
+      </ul>
+      <p class="note">Jeff flagged a like-new 2020-era Razr in-house; the specific teardown step Shahram linked is <a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414#s255814">Motorola Razr teardown step anchor</a>. This gives the clamshell table two Motorola hinge generations if the 2024 Razr is also available.</p>
+    </section>
+
+    <section id="history">
+      <h2>Form-Factor History: From Flip Phones To Folding Smartphones</h2>
+      <p class="lead">For the event, "folding phone" should mean more than flexible OLED. The pre-smartphone era established the user promise - big interaction surface that disappears into a pocket - and the modern foldable era keeps trying to deliver that promise without sacrificing durability.</p>
+
+      <div class="family-graphic" aria-labelledby="family-graphic-title">
+        <h3 id="family-graphic-title">Folding Phone Families</h3>
+        <p class="lead">Mass-market smartphone examples from the last 10 years, grouped by the mechanical/display strategy they put in your pocket.</p>
+        <div class="family-grid">
+          <article class="family-card">
+            <svg class="family-icon" viewBox="0 0 260 86" role="img" aria-label="Vertical clamshell fold">
+              <rect x="18" y="8" width="52" height="34" rx="5" fill="#e7f2f8" stroke="#176c9d" stroke-width="3"></rect>
+              <rect x="18" y="44" width="52" height="34" rx="5" fill="#ffffff" stroke="#176c9d" stroke-width="3"></rect>
+              <line x1="18" y1="43" x2="70" y2="43" stroke="#176c9d" stroke-width="4"></line>
+              <text x="92" y="35" font-size="15" font-weight="800" fill="#17222b">Flexible clamshell</text>
+              <text x="92" y="57" font-size="12" fill="#52616d">Pocket-first phone</text>
+            </svg>
+            <h4>Flexible Clamshell</h4>
+            <p>Full-size smartphone folds down into a compact square-ish shape.</p>
+            <ul>
+              <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002">Samsung Galaxy Z Flip</a>, Z Flip 5G, Z Flip3, Z Flip4, Z Flip5, Z Flip6, Z Flip7/FE, Z Flip8</li>
+              <li><a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414">Motorola Razr 2019/2020</a>, Razr 5G, Razr 2022, Razr 40/Razr+, <a href="https://en-us.support.motorola.com/app/answers/prod_answer_detail/a_id/180942/p/11160">Razr 50/Razr+ 2024</a>, Razr 60/Razr Ultra 2025</li>
+              <li><a href="https://consumer.huawei.com/cn/phones/pura-x-max/">Huawei Pura X</a>, P50 Pocket, Pocket S, Pocket 2; Oppo Find N2 Flip/N3 Flip; Vivo X Flip; Xiaomi Mix Flip; Honor Magic V Flip; Tecno Phantom V Flip; Nubia Flip/Libero Flip</li>
+            </ul>
+          </article>
+
+          <article class="family-card">
+            <svg class="family-icon" viewBox="0 0 260 86" role="img" aria-label="Inward book fold">
+              <rect x="10" y="13" width="58" height="60" rx="5" fill="#e7f4ed" stroke="#2e7d5b" stroke-width="3"></rect>
+              <rect x="70" y="13" width="58" height="60" rx="5" fill="#ffffff" stroke="#2e7d5b" stroke-width="3"></rect>
+              <line x1="69" y1="14" x2="69" y2="72" stroke="#2e7d5b" stroke-width="5"></line>
+              <text x="146" y="35" font-size="15" font-weight="800" fill="#17222b">Inward book</text>
+              <text x="146" y="57" font-size="12" fill="#52616d">Tablet inside</text>
+            </svg>
+            <h4>Inward Book Fold</h4>
+            <p>Large protected inner display plus an outer phone screen.</p>
+            <ul>
+              <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">Samsung Galaxy Fold</a> and Z Fold2, Z Fold3, Z Fold4, Z Fold5, Z Fold6, <a href="https://www.ifixit.com/Device/Samsug_Galaxy_Z_Fold_7">Z Fold7</a>, <a href="https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem">Z Fold8</a></li>
+              <li><a href="https://www.ifixit.com/Device/Google_Pixel_Fold">Google Pixel Fold</a>, <a href="https://www.ifixit.com/News/100082/googles-pixel-9-pro-fold-nudges-foldables-toward-repairability">Pixel 9 Pro Fold</a>, Pixel 10 Pro Fold, Pixel 11 Pro Fold</li>
+              <li><a href="https://www.oppo.com/en/newsroom/press/oppo-findn/">Oppo Find N</a>/N2/N3/N5/N6, OnePlus Open, Vivo X Fold series, Xiaomi Mix Fold series, Honor Magic V series, Huawei Mate X2/X3/X5/X6, Tecno Phantom V Fold</li>
+            </ul>
+          </article>
+
+          <article class="family-card">
+            <svg class="family-icon" viewBox="0 0 260 86" role="img" aria-label="Outward book fold">
+              <path d="M21 13 H78 C90 13 95 21 95 43 C95 65 90 73 78 73 H21 Z" fill="#efedf8" stroke="#6454a3" stroke-width="3"></path>
+              <path d="M97 13 H154 V73 H97 C109 64 114 53 114 43 C114 33 109 22 97 13 Z" fill="#ffffff" stroke="#6454a3" stroke-width="3"></path>
+              <line x1="96" y1="15" x2="96" y2="71" stroke="#6454a3" stroke-width="5"></line>
+              <text x="132" y="35" font-size="15" font-weight="800" fill="#17222b">Outward book</text>
+              <text x="132" y="57" font-size="12" fill="#52616d">Screen outside</text>
+            </svg>
+            <h4>Outward Book Fold</h4>
+            <p>One flexible panel wraps around the exterior when closed.</p>
+            <ul>
+              <li><a href="https://www.prnewswire.com/news-releases/royole-introduces-flexpai-the-worlds-first-commercial-foldable-smartphone-with-a-fully-flexible-display-a-combination-of-mobile-phone-and-tablet-300741383.html">Royole FlexPai</a> and FlexPai 2</li>
+              <li>Huawei Mate X, <a href="https://www.ifixit.com/Teardown/Huawei+Mate+Xs+Teardown/132809">Huawei Mate Xs</a>, Huawei Mate Xs 2</li>
+              <li>Mostly abandoned in favor of inward book folds because the main flexible display is always exposed.</li>
+            </ul>
+          </article>
+
+          <article class="family-card">
+            <svg class="family-icon" viewBox="0 0 260 86" role="img" aria-label="Rigid dual-screen fold">
+              <rect x="10" y="13" width="58" height="60" rx="5" fill="#eef4f7" stroke="#52616d" stroke-width="3"></rect>
+              <rect x="78" y="13" width="58" height="60" rx="5" fill="#ffffff" stroke="#52616d" stroke-width="3"></rect>
+              <line x1="73" y1="13" x2="73" y2="73" stroke="#52616d" stroke-width="4"></line>
+              <text x="150" y="35" font-size="15" font-weight="800" fill="#17222b">Rigid dual</text>
+              <text x="150" y="57" font-size="12" fill="#52616d">Two panels</text>
+            </svg>
+            <h4>Rigid Dual Screen</h4>
+            <p>Two conventional displays share a hinge instead of a flexible OLED.</p>
+            <ul>
+              <li><a href="https://www.prnewswire.com/news-releases/order-the-zte-axon-m-on-nov-1-and-experience-the-unlimited-potential-of-dual-screens-exclusively-from-att-300545420.html">ZTE Axon M</a></li>
+              <li><a href="https://www.ifixit.com/Teardown/Microsoft+Surface+Duo+Teardown/136576">Microsoft Surface Duo</a> and Surface Duo 2</li>
+              <li>LG V50, G8X, V60, and Velvet Dual Screen configurations</li>
+            </ul>
+          </article>
+
+          <article class="family-card">
+            <svg class="family-icon" viewBox="0 0 260 86" role="img" aria-label="Tri-fold phone">
+              <rect x="8" y="13" width="45" height="60" rx="5" fill="#fff3dc" stroke="#9b6a21" stroke-width="3"></rect>
+              <rect x="55" y="13" width="45" height="60" rx="5" fill="#ffffff" stroke="#9b6a21" stroke-width="3"></rect>
+              <rect x="102" y="13" width="45" height="60" rx="5" fill="#fff3dc" stroke="#9b6a21" stroke-width="3"></rect>
+              <line x1="54" y1="14" x2="54" y2="72" stroke="#9b6a21" stroke-width="4"></line>
+              <line x1="101" y1="14" x2="101" y2="72" stroke="#9b6a21" stroke-width="4"></line>
+              <text x="164" y="35" font-size="15" font-weight="800" fill="#17222b">Tri-fold</text>
+              <text x="164" y="57" font-size="12" fill="#52616d">Two hinges</text>
+            </svg>
+            <h4>Tri-Fold</h4>
+            <p>One flexible display uses two bend zones to open into a larger tablet surface.</p>
+            <ul>
+              <li><a href="https://consumer.huawei.com/uk/phones/mate-xt-ultimate-design/">Huawei Mate XT Ultimate Design</a></li>
+              <li><a href="https://consumer.huawei.com/cn/press/events/2025/huawei-mate-xts-ultimate-design-and-all-scenario-new-product-launch/">Huawei Mate XTs Ultimate Design</a></li>
+              <li>Commercial peers remain scarce as of Aug. 14, 2026.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <h3>Mass-Market Form-Factor Timeline</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Era</th>
+              <th>Type</th>
+              <th>Representative devices</th>
+              <th>What changed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1989-1996</td>
+              <td>Flip mouthpiece and true clamshell</td>
+              <td><a href="https://www.upi.com/Archives/1989/04/25/Motorola-introduces-smallest-and-lightest-cellular-phone/6393609480000/">Motorola MicroTAC</a>, <a href="https://www.thehenryford.org/collections/explore/artifact/182871">Motorola StarTAC</a></td>
+              <td>Mechanical movement makes the phone smaller and protects the keypad/screen.</td>
+            </tr>
+            <tr>
+              <td>1996-2009</td>
+              <td>Sliders, communicators, sidekicks</td>
+              <td><a href="https://www.nokia.com/about-us/newsroom/media-resources/media-library/nokia-history/">Nokia 8110</a>, <a href="https://collection.sciencemuseumgroup.org.uk/objects/co8439032/nokia-9000-communicator-mobile-phone">Nokia 9000 Communicator</a>, <a href="https://www.mobilephonemuseum.com/phone-detail/siemens-sl10">Siemens SL10</a>, <a href="https://www.t-mobile.com/news/press/revolutionary-t-mobile-sidekick-wireless-device-now-available">Danger Hiptop/T-Mobile Sidekick</a>, <a href="https://www.globenewswire.com/news-release/2006/09/26/1848440/0/en/It-s-what-computers-have-become-the-new-Nokia-N95.html">Nokia N95</a> (<a href="https://www.ifixit.com/Teardown/Nokia+N95+Teardown/789">iFixit teardown</a>), <a href="https://www.t-mobile.com/news/press/t-mobile-unveils-the-t-mobile-g1-the-first-phone-powered-by">T-Mobile G1</a> (<a href="https://www.ifixit.com/Teardown/T-Mobile+G1+Teardown/782">iFixit teardown</a>)</td>
+              <td>Sliding and hinged designs reveal keyboards, protect buttons, or switch between phone and work modes.</td>
+            </tr>
+            <tr>
+              <td>2011-2017</td>
+              <td>Rigid dual-screen folds</td>
+              <td><a href="https://americas.kyocera.com/press-releases/press-releases_201503232609.htm">Kyocera Echo</a> (<a href="https://www.ifixit.com/Device/Kyocera_Echo">iFixit device page</a>), <a href="https://www.nec.com/en/press/201302/global_20130213_02.html">NEC Medias W</a>, <a href="https://www.prnewswire.com/news-releases/order-the-zte-axon-m-on-nov-1-and-experience-the-unlimited-potential-of-dual-screens-exclusively-from-att-300545420.html">ZTE Axon M</a></td>
+              <td>Two conventional displays approximate a tablet without needing flexible OLED.</td>
+            </tr>
+            <tr>
+              <td>2018-2020</td>
+              <td>First flexible-display smartphones</td>
+              <td><a href="https://www.prnewswire.com/news-releases/royole-introduces-flexpai-the-worlds-first-commercial-foldable-smartphone-with-a-fully-flexible-display-a-combination-of-mobile-phone-and-tablet-300741383.html">Royole FlexPai</a>, <a href="https://api.samsungmobilepress.com/press-releases/samsung-unfolds-the-future-with-a-whole-new-mobile-category-introducing-galaxy-fold">Galaxy Fold</a> (<a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">iFixit teardown</a>), <a href="https://www.huawei.com/es/news/2019/huawei-lanza-huawei-mate-x-telefono-plegable-5g-mas-rapido-del-mundo">Huawei Mate X</a>, <a href="https://motorolanews.com/new-razr-reinvention-of-an-icon/">Motorola Razr 2019/2020</a> (<a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414">iFixit teardown</a>)</td>
+              <td>Flexible OLED leaves trade-show demos and enters consumer channels, but fragility defines the category.</td>
+            </tr>
+            <tr>
+              <td>2020-2023</td>
+              <td>Refined clamshell and book folds</td>
+              <td><a href="https://www.samsungmobilepress.com/articles/the-future-changes-shape-express-yourself-with-galaxy-z-flip">Galaxy Z Flip</a> (<a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002">iFixit teardown</a>), Galaxy Z Fold <a href="https://www.ifixit.com/News/44028/see-samsungs-rebooted-galaxy-z-fold-2-come-apart-in-our-teardown">2</a>/<a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Fold3+Teardown/144857">3</a>/<a href="https://www.ifixit.com/News/64317/reviewers-say-the-future-of-phones-is-foldable-is-it-repairable-too">4</a>/<a href="https://www.ifixit.com/News/87752/2023-teardown-highlights">5</a>, <a href="https://www.oppo.com/en/newsroom/press/oppo-findn/">Oppo Find N</a>, <a href="https://blog.google/products-and-platforms/devices/pixel/google-pixel-fold/">Pixel Fold</a> (<a href="https://www.ifixit.com/Device/Google_Pixel_Fold">iFixit hub</a>)</td>
+              <td>UTG, free-stop hinges, water resistance, waterdrop hinges, and foldable-aware Android improve daily usability.</td>
+            </tr>
+            <tr>
+              <td>2024-2026</td>
+              <td>Thin, repairability-aware, and multi-fold experiments</td>
+              <td><a href="https://blog.google/products-and-platforms/devices/pixel/google-pixel-9-pro-fold/">Pixel 9 Pro Fold</a> (<a href="https://www.ifixit.com/News/100082/googles-pixel-9-pro-fold-nudges-foldables-toward-repairability">iFixit teardown</a>), <a href="https://www.honor.com/global/phones/honor-magic-v/">Honor Magic V series</a>, <a href="https://consumer.huawei.com/uk/phones/mate-xt-ultimate-design/">Huawei Mate XT</a>, Galaxy Z Fold <a href="https://www.ifixit.com/Device/Samsug_Galaxy_Z_Fold_7">7</a>/<a href="https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem">8</a>, <a href="https://store.google.com/product/pixel_10_pro_fold?hl=en-US">Pixel 10 Pro Fold</a>/<a href="https://support.google.com/pixelphone/answer/7158570?hl=en">Pixel 11 Pro Fold specs</a></td>
+              <td>Competition shifts toward thinner bodies, gapless folds, larger outer screens, dust claims, stronger hinge alloys, silicon-carbon batteries, and tri-fold architecture.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details open>
+        <summary>Taxonomy Of Mass-Market Folding Phone Types</summary>
+        <div>
+          <ul>
+            <li><strong>Flip mouthpiece:</strong> Small hinged microphone cover; early pocketability without a full folding body.</li>
+            <li><strong>True clamshell:</strong> Screen and keypad protected inside a folding shell; StarTAC and Razr V3 made this culturally legible.</li>
+            <li><strong>Communicator clamshell:</strong> Phone outside, keyboard and wide display inside; early "phone plus pocket computer" promise.</li>
+            <li><strong>Vertical slider:</strong> Sliding shell reveals keypad or protects controls; Nokia 8110 is the recognizable museum object.</li>
+            <li><strong>Horizontal QWERTY slider:</strong> Messaging and mobile email era; Sidekick, Nokia N97, T-Mobile G1.</li>
+            <li><strong>Swivel/rotating display:</strong> Screen rotates to reveal controls or a second orientation; Sidekick and LG Wing style.</li>
+            <li><strong>Rigid dual-screen fold:</strong> Two ordinary displays joined by a hinge; Kyocera Echo, Surface Duo, ZTE Axon M.</li>
+            <li><strong>Outward flexible book fold:</strong> One flexible screen wraps around the outside; Royole FlexPai, Huawei Mate X/Mate XS.</li>
+            <li><strong>Inward flexible book fold:</strong> Large protected inner display plus outer cover screen; Galaxy Fold, Pixel Fold, Oppo Find N.</li>
+            <li><strong>Vertical flexible clamshell:</strong> Full smartphone folds in half; Galaxy Z Flip, Motorola Razr.</li>
+            <li><strong>Tri-fold:</strong> Dual-hinge architecture opens from phone-ish slab to small tablet; Huawei Mate XT type.</li>
+            <li><strong>Rollable/slidable concepts:</strong> Not a mass-market phone category as of Aug. 14, 2026, but important as the adjacent "what comes after folding" exhibit teaser.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Innovation Moments To Call Out</summary>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Innovation</th>
+                <th>Enabled by</th>
+                <th>Changed what?</th>
+                <th>Adoption</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>True clamshell phone</td>
+                <td>Miniaturized boards, batteries, antennas, and hinge packaging.</td>
+                <td>Made pocket protection a selling point, not just a compromise.</td>
+                <td>Very wide adoption through the 2000s.</td>
+              </tr>
+              <tr>
+                <td>QWERTY slider / Sidekick swivel</td>
+                <td>Compact keyboard mechanisms and always-connected data plans.</td>
+                <td>Turned phones into messaging and mobile web devices before slabs won.</td>
+                <td>Wide but temporary; mostly displaced by multitouch slabs.</td>
+              </tr>
+              <tr>
+                <td>Rigid dual-screen fold</td>
+                <td>Conventional displays, hinge synchronization, dual-app software.</td>
+                <td>Explored multitasking without flexible-display risk.</td>
+                <td>Niche; useful contrast category, not broad market winner.</td>
+              </tr>
+              <tr>
+                <td>Commercial flexible OLED smartphone</td>
+                <td>Flexible AMOLED, plastic cover layers, segmented chassis.</td>
+                <td>Made "phone to tablet" a purchasable product, not a concept demo.</td>
+                <td>Wide industry adoption after Samsung/Huawei scaled the category.</td>
+              </tr>
+              <tr>
+                <td>Inward book fold plus cover screen</td>
+                <td>Hinge geometry that protects the fragile inner display when closed.</td>
+                <td>Set the dominant premium foldable template.</td>
+                <td>Very wide among premium foldables.</td>
+              </tr>
+              <tr>
+                <td>Ultra-thin glass cover layers</td>
+                <td>Chemically strengthened glass thin enough to bend above a support stack.</td>
+                <td>Improved feel and scratch resistance, but still needs polymer protection.</td>
+                <td>Wide adoption across premium flexible-display phones.</td>
+              </tr>
+              <tr>
+                <td>Free-stop hinge / Flex Mode</td>
+                <td>Cam, spring, and torque mechanisms in a tiny hinge volume.</td>
+                <td>Added tabletop camera, video, and half-open workflows.</td>
+                <td>Common in clamshells and many book folds.</td>
+              </tr>
+              <tr>
+                <td>Waterdrop / teardrop hinge</td>
+                <td>Multi-axis hinge path that gives the display a larger bend radius.</td>
+                <td>Reduced crease and allowed flatter closed gaps.</td>
+                <td>Broad adoption after Oppo/Huawei/Samsung directionally converged.</td>
+              </tr>
+              <tr>
+                <td>Foldable-aware Android</td>
+                <td>App continuity, taskbar, split-screen, large-screen layouts.</td>
+                <td>Made the large inner screen useful beyond video and browsing.</td>
+                <td>Broad among Android book folds; Apple expectation is iPad-like continuity.</td>
+              </tr>
+              <tr>
+                <td>Tri-fold architecture</td>
+                <td>Two hinges, segmented body, flexible OLED with multiple bend zones.</td>
+                <td>Turns a pocketable slab into a much larger tablet surface.</td>
+                <td>Early/niche; not yet broad by Aug. 2026.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section id="repairability-scores">
+      <h2>Folding Phone Repairability Scores</h2>
+      <p class="lead">Foldable and dual-screen hinged smartphones listed on iFixit's <a href="https://www.ifixit.com/repairability/smartphone-repairability-scores">current smartphone repairability scores</a> and <a href="https://www.ifixit.com/repairability/legacy-smartphone-scores">legacy smartphone scores</a>, ranked highest to lowest. iFixit notes that its scoring rubric changes over time, so the score is most useful when paired with the teardown context and the phone's release cohort.</p>
+      <p class="note">Scope note: this table includes phones that fold or hinge as smartphones. It excludes sliders like the Nokia 8110 4G because they are moving-form-factor phones, but not folding phones.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Phone</th>
+              <th>Score</th>
+              <th>Release year</th>
+              <th>Style of foldable</th>
+              <th>Repair pros</th>
+              <th>Repair cons</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><a href="https://www.ifixit.com/News/100082/googles-pixel-9-pro-fold-nudges-foldables-toward-repairability">Google Pixel 9 Pro Fold</a></td>
+              <td><span class="score-badge">4/10</span></td>
+              <td>2024</td>
+              <td>Inward book fold</td>
+              <td>
+                <ul class="pro-con">
+                  <li>Outer display and back glass adhesives release without heat, making entry less punishing.</li>
+                  <li>Google provides a service manual, replacement parts, and software calibration tools.</li>
+                  <li>Modular layout and USB-C board make some common repairs more realistic.</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="pro-con">
+                  <li>Repairs still start by de-gluing and later re-gluing the outer display and/or back cover.</li>
+                  <li>Inner screen, hinge, and multi-body cable routing keep the whole repair path complex.</li>
+                  <li>Battery pull tabs underperform compared with stretch-release adhesive.</li>
+                </ul>
+              </td>
+              <td><a href="https://www.ifixit.com/repairability/smartphone-repairability-scores">Score page</a>; <a href="https://www.ifixit.com/News/100082/googles-pixel-9-pro-fold-nudges-foldables-toward-repairability">iFixit article</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><a href="https://www.ifixit.com/Device/Samsug_Galaxy_Z_Fold_7">Samsung Galaxy Z Fold7</a></td>
+              <td><span class="score-badge">3/10</span></td>
+              <td>2025</td>
+              <td>Inward book fold</td>
+              <td>
+                <ul class="pro-con">
+                  <li>Back glass adhesive appears to release without heat.</li>
+                  <li>USB-C port design is modular.</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="pro-con">
+                  <li>Samsung does not appear to provide repair instructions or replacement parts.</li>
+                  <li>Most repairs require careful outer display and/or back cover de-gluing.</li>
+                  <li>Thin folded design, fragile inner display, and dual-body architecture make DIY work risky.</li>
+                </ul>
+              </td>
+              <td><a href="https://www.ifixit.com/repairability/smartphone-repairability-scores">Score page</a>; <a href="https://www.ifixit.com/Device/Samsug_Galaxy_Z_Fold_7">iFixit device/teardown hub</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><a href="https://www.ifixit.com/Device/Google_Pixel_Fold">Google Pixel Fold</a></td>
+              <td><span class="score-badge">3/10</span></td>
+              <td>2023</td>
+              <td>Inward book fold</td>
+              <td>
+                <ul class="pro-con">
+                  <li>Google provides a free service manual.</li>
+                  <li>Genuine replacement parts and software calibration tools are available to end users.</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="pro-con">
+                  <li>Repairs require careful de-gluing and re-gluing of the outer display and/or back cover.</li>
+                  <li>The hinge, inner display, and two-half layout keep the repair path harder than a slab phone.</li>
+                </ul>
+              </td>
+              <td><a href="https://www.ifixit.com/repairability/smartphone-repairability-scores">Score page</a>; <a href="https://www.ifixit.com/Document/PgSTKMs1CSJkFuvp/Repair-Snapshot---Pixel-Fold.pdf">repair snapshot</a></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">Samsung Galaxy Fold</a></td>
+              <td><span class="score-badge">2/10</span></td>
+              <td>2019</td>
+              <td>Inward book fold</td>
+              <td>
+                <ul class="pro-con">
+                  <li>A single Phillips driver handles the screws.</li>
+                  <li>Many internal components are modular once the phone is open.</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="pro-con">
+                  <li>Hinge and display mechanics are expected wear points.</li>
+                  <li>The main display is fragile and expensive.</li>
+                  <li>Battery replacement is possible but difficult, with solvents risking display supports.</li>
+                </ul>
+              </td>
+              <td><a href="https://www.ifixit.com/repairability/legacy-smartphone-scores">Legacy score page</a>; <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">iFixit teardown</a></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><a href="https://www.ifixit.com/Teardown/Microsoft+Surface+Duo+Teardown/136576">Microsoft Surface Duo</a></td>
+              <td><span class="score-badge">2/10</span></td>
+              <td>2020</td>
+              <td>Rigid dual-screen fold</td>
+              <td>
+                <ul class="pro-con">
+                  <li>Two conventional screens avoid a single fragile flexible OLED panel.</li>
+                  <li>Separating the display surfaces from the hinge makes it a useful contrast specimen for touch tables.</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="pro-con">
+                  <li>Batteries are glued in and require extensive disassembly.</li>
+                  <li>USB-C port is soldered to the main board.</li>
+                  <li>Uncommon tri-point screws and delicate interconnects complicate service.</li>
+                </ul>
+              </td>
+              <td><a href="https://www.ifixit.com/repairability/legacy-smartphone-scores">Legacy score page</a>; <a href="https://www.ifixit.com/Teardown/Microsoft+Surface+Duo+Teardown/136576">iFixit teardown</a></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002">Samsung Galaxy Z Flip</a></td>
+              <td><span class="score-badge">2/10</span></td>
+              <td>2020</td>
+              <td>Flexible clamshell</td>
+              <td>
+                <ul class="pro-con">
+                  <li>Battery replacement is possible.</li>
+                  <li>Closed clamshell form protects the inner flexible display during pocket carry.</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="pro-con">
+                  <li>Glued-down glass panels make repair entry unnecessarily hard.</li>
+                  <li>Battery work is harder than necessary because of cable routing and lack of stretch-release adhesive.</li>
+                  <li>Folding components are likely long-term wear points.</li>
+                </ul>
+              </td>
+              <td><a href="https://www.ifixit.com/repairability/legacy-smartphone-scores">Legacy score page</a>; <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002">iFixit teardown</a></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td><a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414">Motorola razr</a></td>
+              <td><span class="score-badge">1/10</span></td>
+              <td>2020</td>
+              <td>Flexible clamshell</td>
+              <td>
+                <ul class="pro-con">
+                  <li>Clamshell form protects the main screen when closed.</li>
+                  <li>Repair scorecard does not call out meaningful DIY repair wins.</li>
+                </ul>
+              </td>
+              <td>
+                <ul class="pro-con">
+                  <li>Every repair starts and ends with stubborn glued outer covers.</li>
+                  <li>Battery replacement requires near-total disassembly.</li>
+                  <li>Charging port is soldered to the main board.</li>
+                </ul>
+              </td>
+              <td><a href="https://www.ifixit.com/repairability/legacy-smartphone-scores">Legacy score page</a>; <a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414">iFixit teardown</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="iphone-fold">
+      <h2>iPhone Fold Rumor Brief</h2>
+      <p class="lead">As of Aug. 14, 2026, Apple has not announced a foldable iPhone. The rumor has been public for roughly a decade, with Apple patent filings reaching back to 2015 priority dates and mainstream reporting now converging on a fall 2026 book-style launch.</p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>What Gurman Has Been Saying</h3>
+          <p>Bloomberg's Mark Gurman has reported a fall 2026 foldable iPhone target and, in March 2026, described an iPad-like interface when opened, side-by-side apps, an interior display roughly iPad mini sized, and an outer display closer to a small iPhone.</p>
+          <p><a href="https://www.bloomberg.com/news/articles/2026-03-11/apple-s-foldable-iphone-to-feature-ipad-like-interface-when-opened">Bloomberg: iPad-like interface report</a><br><a href="https://www.bloomberg.com/news/newsletters/2025-07-20/apple-s-2026-foldable-iphone-samsung-comparison-m5-ipad-pro-dual-front-cameras">Bloomberg Power On: 2026 foldable iPhone</a><br><a href="https://www.bloomberg.com/news/articles/2026-04-07/apple-s-foldable-iphone-remains-on-track-for-september-debut">Bloomberg: September debut remains on track</a></p>
+        </article>
+        <article class="card">
+          <h3>What People Expect</h3>
+          <p>Consensus rumor shape: inward book fold, about 5.5-inch outer screen, about 7.8-inch inner screen, thin titanium/aluminum body, durable hinge, minimal crease, side-button Touch ID, dual rear cameras, A20-class chip, premium price above $2,000, and constrained early supply.</p>
+          <p><a href="https://www.macrumors.com/roundup/iphone-fold/">MacRumors iPhone Fold roundup</a><br><a href="https://www.macrumors.com/2025/09/01/foldable-iphone-under-screen-touch-id-dismissed/">MacRumors on Kuo and Touch ID</a><br><a href="https://www.macrumors.com/2025/03/06/kuo-apple-foldable-iphone-book-style-2000/">MacRumors/Kuo: book design, displays, cameras, Touch ID, price</a><br><a href="https://www.macrumors.com/2025/03/21/apple-liquid-metal-foldable-iphone-hinges/">MacRumors/Kuo: liquid-metal hinge</a><br><a href="https://www.thelec.net/news/articleView.html?idxno=6426">The Elec: Samsung Display OLED supply</a><br><a href="https://www.thelec.kr/news/articleView.html?idxno=58537">The Elec: production and hinge status</a><br><a href="https://counterpointresearch.com/en/insights/global-foldable-smartphone-asp-forecast-q1-2026">Counterpoint: foldable ASP forecast</a></p>
+        </article>
+        <article class="card">
+          <h3>Why The Excitement Is Real</h3>
+          <p>Not just "because Apple": people are hoping a foldable iPhone can combine pocket phone reliability with a small-tablet work surface, iPad-quality apps, durable hinge behavior, cleaner crease control, better app continuity, and less anxiety about the fragile inner display.</p>
+          <p>The press hook is less "Apple finally copied foldables" and more "Apple may make the category feel boring enough to trust."</p>
+        </article>
+      </div>
+
+      <h3>Feature Confidence Table</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rumored feature</th>
+              <th>Confidence</th>
+              <th>Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Foldable iPhone launch near Sept. 2026</td>
+              <td><span class="tag green">High - 80%</span></td>
+              <td>Multiple analyst and supply-chain reports now align with <a href="https://www.bloomberg.com/news/articles/2026-04-07/apple-s-foldable-iphone-remains-on-track-for-september-debut">Bloomberg timing</a>, but Apple has not announced it.</td>
+            </tr>
+            <tr>
+              <td>Book-style inward fold</td>
+              <td><span class="tag green">High - 85%</span></td>
+              <td>Most credible reporting has moved away from clamshell as first product; <a href="https://counterpointresearch.com/en/insights/Book-Type-Devices-to-Reach-of-Global-Foldable-Smartphone-Shipments-in-2026">Counterpoint</a> also expects Apple's entry to reinforce book-type foldables.</td>
+            </tr>
+            <tr>
+              <td>Approx. 7.7-7.8-inch inner display and approx. 5.5-inch outer display</td>
+              <td><span class="tag green">High - 75%</span></td>
+              <td><a href="https://www.macrumors.com/2025/03/06/kuo-apple-foldable-iphone-book-style-2000/">Kuo/MacRumors</a> and <a href="https://www.bloomberg.com/news/articles/2026-03-11/apple-s-foldable-iphone-to-feature-ipad-like-interface-when-opened">Gurman</a> descriptions converge on this approximate size class.</td>
+            </tr>
+            <tr>
+              <td>iPad-like interface and side-by-side apps</td>
+              <td><span class="tag green">High - 80%</span></td>
+              <td>Direct <a href="https://www.bloomberg.com/news/articles/2026-03-11/apple-s-foldable-iphone-to-feature-ipad-like-interface-when-opened">Bloomberg reporting</a>; also strategically obvious for a book fold.</td>
+            </tr>
+            <tr>
+              <td>Samsung Display as key/exclusive panel supplier</td>
+              <td><span class="tag green">High - 80%</span></td>
+              <td>Supply-chain reporting consistently points to <a href="https://www.thelec.net/news/articleView.html?idxno=6426">Samsung Display's foldable panel lead</a>; <a href="https://www.macrumors.com/2026/06/22/production-of-panels-for-foldable-iphone-approved/">MacRumors also reported production approval</a>.</td>
+            </tr>
+            <tr>
+              <td>Minimal or nearly invisible crease</td>
+              <td><span class="tag gold">Medium - 60%</span></td>
+              <td><a href="https://www.macrumors.com/2025/07/15/foldable-iphone-crease-free-samsung-display/">Consistent rumor</a> and Apple design priority, but "nearly invisible" is subjective and depends on lighting, touch feel, and wear.</td>
+            </tr>
+            <tr>
+              <td>Liquid-metal/titanium/stainless hinge mix</td>
+              <td><span class="tag gold">Medium - 60%</span></td>
+              <td><a href="https://patents.justia.com/patent/12164344">Patent</a> and <a href="https://www.macrumors.com/2025/03/21/apple-liquid-metal-foldable-iphone-hinges/">analyst trail</a> are plausible, but final material stack is rarely known before teardown.</td>
+            </tr>
+            <tr>
+              <td>Side-button Touch ID instead of Face ID</td>
+              <td><span class="tag gold">Medium-high - 65%</span></td>
+              <td><a href="https://www.macrumors.com/2025/09/01/foldable-iphone-under-screen-touch-id-dismissed/">Kuo is firm on it</a> and thinness supports the logic, but it would be a major flagship biometric shift.</td>
+            </tr>
+            <tr>
+              <td>Price above $2,000</td>
+              <td><span class="tag green">High - 80%</span></td>
+              <td><a href="https://counterpointresearch.com/en/insights/global-foldable-smartphone-asp-forecast-q1-2026">Premium foldable economics</a> and <a href="https://www.macrumors.com/2025/03/06/kuo-apple-foldable-iphone-book-style-2000/">analyst ranges</a> all land above current Pro Max pricing.</td>
+            </tr>
+            <tr>
+              <td>"iPhone Ultra" name</td>
+              <td><span class="tag red">Medium-low - 45%</span></td>
+              <td>Reported as an internal or rumor name; Apple branding remains unknowable until launch.</td>
+            </tr>
+            <tr>
+              <td>Dual rear cameras, no telephoto</td>
+              <td><span class="tag gold">Medium - 55%</span></td>
+              <td><a href="https://www.macrumors.com/2025/07/10/foldable-iphone-display-production-begins/">Repeated in rumor roundups</a>; thinness makes the compromise plausible, but Apple may protect a flagship camera story.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Apple Patent Trail To Link In Displays</h3>
+      <ul>
+        <li><a href="https://patents.google.com/patent/US10551880B1/en">US10551880B1 - Electronic devices with flexible displays and hinges</a>: Apple patent with 2015 priority, bend-axis, hinge, flaps, and minimum bend-radius language.</li>
+        <li><a href="https://patents.google.com/patent/US20190069451A1/en">US20190069451A1</a> / <a href="https://patents.google.com/patent/US10943529B2/en">US10943529B2</a> - Electronic devices with flexible displays: Flexible display and foldable housing concepts.</li>
+        <li><a href="https://patents.google.com/patent/US11444268B2/en">US11444268B2 - Electronic devices with flexible display cover layers</a>: Cover-layer durability and bending behavior.</li>
+        <li><a href="https://patents.google.com/patent/US20200383219A1/en">US20200383219A1</a> / <a href="https://patents.google.com/patent/US12213267B2/en">US12213267B2</a> - Electronic devices having folding expandable displays: Foldable/expandable device architecture.</li>
+        <li><a href="https://patents.justia.com/patent/12164344">US12164344 - Hinges for folding display devices</a>: Hinge-specific Apple patent link for the hinge table.</li>
+        <li><a href="https://patents.google.com/patent/US20260082496A1/en">US20260082496A1 - Electronic devices with crack-resistant cover layers</a>: 2026 public application useful for "what is Apple worried about?" display captions.</li>
+      </ul>
+    </section>
+
+    <section id="hinges">
+      <h2>Hinges: What To Explain At The Table</h2>
+      <p class="lead">A phone hinge is a motion-control, display-support, cable-routing, ingress-management system disguised as a hinge. The useful refrain: a door hinge rotates two rigid objects; a foldable phone hinge protects a fragile moving display stack while the whole device is squeezed, dropped, pocketed, and repaired.</p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>General Hinge Families</h3>
+          <p>Butt hinges, continuous/piano hinges, pivot hinges, concealed hinges, lift-off hinges, spring hinges, detent hinges, friction/torque hinges, and living hinges. These are useful analogies, but none has to manage an OLED bend radius.</p>
+          <p><a href="https://monroeengineering.com/products-hinges.php">OneMonroe hinge families</a><br><a href="https://catalog.monroeengineering.com/viewitems/plastic-hinges/hinges-plastic-living-hinge">OneMonroe living hinge</a><br><a href="https://reell.com/products/friction-hinges">Reell friction/torque hinge primer</a><br><a href="https://southco.com/en_us_int/e6-10-695f-50">Southco constant-torque position-control hinge example</a></p>
+        </article>
+        <article class="card">
+          <h3>Phone Hinge Families</h3>
+          <ul>
+            <li>Geared synchronized hinge: keeps both halves moving together.</li>
+            <li>Cam/spring hinge: creates stop points and tabletop positions.</li>
+            <li>Waterdrop/teardrop hinge: gives the display a gentler bend radius.</li>
+            <li>Sliding support-plate hinge: supports the screen when open, retracts when folded.</li>
+            <li>Gearless hinge: simplifies mechanism to reduce bulk and friction.</li>
+            <li>Dual-hinge tri-fold: coordinates multiple bend zones.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Why Hinge Design Is Difficult</h3>
+          <ul>
+            <li>Display stack has a neutral plane; bending the wrong layer wrong way causes stress, crease, or delamination.</li>
+            <li>Torque must feel premium on day one and after thousands of cycles.</li>
+            <li>Grit that is harmless in a door hinge can destroy a foldable display.</li>
+            <li>Flex cables cross the moving joint and fatigue over time.</li>
+            <li>Water sealing and dust sealing pull against repairability.</li>
+          </ul>
+          <p><a href="https://www.molex.com/en-us/products/printed-electronics/flexible-printed-circuits">Molex flexible printed circuits</a><br><a href="https://webstore.iec.ch/en/publication/2452">IEC 60529 IP Code standard</a><br><a href="https://discover.parker.com/Parker-ORing-Handbook-ORD-5700">Parker O-Ring Handbook</a></p>
+        </article>
+        <article class="card">
+          <h3>Solved And Unsolved</h3>
+          <p><strong>Mostly solved:</strong> phones can now fold flatter, hold angles, survive water exposure, and feel thinner.</p>
+          <p><strong>Still not solved:</strong> dust/lint, crease visibility, pressure-sensitive inner displays, hinge repair cost, torque drift, and real-life wear that lab fold counts miss.</p>
+        </article>
+      </div>
+
+      <h3>Hinge Photo And Diagram Links</h3>
+      <ul class="source-list">
+        <li><a href="https://news.samsung.com/us/galaxy-z-flips-inside-look-hideaway-hinge-dual-cam-mechanism/">Samsung dual CAM Hideaway Hinge explanation and images</a></li>
+        <li><a href="https://www.oppo.com/en/newsroom/press/oppo-findn/">Oppo Find N Flexion Hinge with waterdrop description</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">iFixit Galaxy Fold hinge photos</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414">iFixit Motorola Razr hinge and support plates</a></li>
+        <li><a href="https://www.ifixit.com/News/100082/googles-pixel-9-pro-fold-nudges-foldables-toward-repairability">iFixit Pixel 9 Pro Fold hinge discussion</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600#s244132">iFixit Galaxy Fold step 19: hinge tape and debris-ingress photos</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600#s236283">iFixit Galaxy Fold step 20: geared hinge, clasps, and flex-cable routing</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600#s236841">iFixit Galaxy Fold step 21: spine motion and gear-array view</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414#s255814">iFixit Motorola Razr step 10: continuous geared hinge, cam, springs, and support plates</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002#s257265">iFixit Galaxy Z Flip step 5: Hideaway Hinge brush and dust test</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002#s257272">iFixit Galaxy Z Flip step 13: dust under hinge tape, cables, and brushes</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002#s257273">iFixit Galaxy Z Flip step 14: post-dust-test hinge photos</a></li>
+        <li><a href="https://www.ifixit.com/News/44028/see-samsungs-rebooted-galaxy-z-fold-2-come-apart-in-our-teardown">iFixit Galaxy Z Fold2 teardown article with moving X-ray hinge reference</a></li>
+        <li><a href="https://www.ifixit.com/News/52399/galaxy-z-flip-fold-3-small-changes-make-a-big-difference">iFixit Galaxy Z Flip3 and Fold3 teardown article with gaskets, brushes, and water-resistance strategy</a></li>
+        <li><a href="https://store.google.com/us/magazine/google-pixel-design-story?hl=en-US">Google Pixel 10 Pro Fold gearless hinge design story</a></li>
+        <li><a href="https://www.samsungmobilepress.com/articles/samsung-galaxy-z-fold7-raising-the-bar-for-smartphones">Samsung Galaxy Z Fold7 Armor FlexHinge release notes</a></li>
+        <li><a href="https://www.samsungmobilepress.com/articles/the-breakthroughs-powering-samsungs-thinnest-most-refined-foldables">Samsung stronger, slimmer hinge explanation</a></li>
+        <li><a href="https://news.samsung.com/us/evolution-of-samsung-galaxy-z-fold-series-thinner-sturdier-compact-as-ever">Samsung Galaxy Z Fold series FlexHinge evolution and waterdrop mechanism</a></li>
+        <li><a href="https://www.samsungmobilepress.com/articles/galaxy-unpacked-2024-a-look-inside-the-galaxy-z-fold6">Samsung Galaxy Z Fold6 inside look: wing plate and hinge explanation</a></li>
+        <li><a href="https://www.oppo.com/en/newsroom/press/oppo-find-n3-series-global-launch/">OPPO Find N3 third-generation Flexion Hinge official launch notes</a></li>
+        <li><a href="https://www.oppo.com/en/newsroom/press/find-n5-global-launch/">OPPO Find N5 Titanium Flexion Hinge official launch notes</a></li>
+        <li><a href="https://www.oppo.com/en/newsroom/stories/oppo-find-n6-zero-feel-crease-foldable-innovation/">OPPO Find N6 Zero-Feel Crease and 2nd-generation Titanium Flexion Hinge engineering story</a></li>
+        <li><a href="https://blog.google/products-and-platforms/devices/pixel/how-we-designed-and-built-the-pixel-folds-hinge/">Google Pixel Fold hinge design story</a></li>
+        <li><a href="https://blog.google/products-and-platforms/devices/pixel/pixel-9-pro-fold-redesign/">Google Pixel 9 Pro Fold redesigned hinge story</a></li>
+        <li><a href="https://blog.google/products-and-platforms/devices/pixel/pixel-10-pro-fold-gearless-hinge-design/">Google Pixel 10 Pro Fold gearless hinge design story</a></li>
+        <li><a href="https://consumer.huawei.com/ie/phones/mate-x-s/">Huawei Mate Xs Falcon Wing hinge official page</a></li>
+        <li><a href="https://consumer.huawei.com/uk/phones/mate-xt-ultimate-design/">Huawei Mate XT Ultimate Design Advanced Precision Hinge System official page</a></li>
+        <li><a href="https://www.honor.com/global/phones/honor-magic-v3/">Honor Magic V3 Super Steel Hinge official page</a></li>
+        <li><a href="https://www.honor.com/global/phones/honor-magic-v5/">Honor Magic V5 mortise-and-tenon dampening hinge and foreign-object detection official page</a></li>
+        <li><a href="https://patents.google.com/patent/US10491725B1/en">Motorola foldable device hinge patent</a></li>
+        <li><a href="https://patents.google.com/patent/US11997807B2/en">Samsung foldable electronic device hinge patent</a></li>
+        <li><a href="https://patents.google.com/patent/US12164344B2/en">Apple US12164344B2 hinge patent diagrams: links, crescent slots, pins, and synchronization gears</a></li>
+        <li><a href="https://patents.google.com/patent/US11385686B2/en">Apple US11385686B2 flexible display and hinge diagrams: bend radius and housing flaps</a></li>
+        <li><a href="https://patents.google.com/patent/US11337321B2/en">OPPO US11337321B2 foldable terminal patent diagrams: carrier plate, cover plates, and rotating arms</a></li>
+        <li><a href="https://patents.google.com/patent/WO2020246780A1/en">Samsung WO2020246780A1 foldable hinge patent diagrams: gear and cam structures</a></li>
+        <li><a href="https://patents.google.com/patent/US12181935B2/en">Waterdrop-type hinge patent diagrams for flexible-display bend-radius support</a></li>
+      </ul>
+    </section>
+
+    <section id="answers">
+      <h2>iFixit Answers And Guide Comments: Common Foldable Problems</h2>
+      <p class="lead">These counts are directional, not official iFixit analytics. They come from a sampled review of visible iFixit Answers discussions and guide comments, deduping obvious repeats. For printed claims, use this as a lead list and confirm with internal Answers/export data if available.</p>
+
+      <div class="chart-panel" aria-label="Bar chart of common folding phone problems">
+        <svg viewBox="0 0 760 330" role="img">
+          <title>Five most-common sampled folding-phone repair problems</title>
+          <rect x="0" y="0" width="760" height="330" fill="#ffffff"></rect>
+          <text x="24" y="32" font-size="18" font-weight="800" fill="#17222b">Top sampled folding-phone problems</text>
+          <text x="24" y="54" font-size="12" fill="#52616d">Directional count from visible iFixit Answers and guide-comment sampling</text>
+          <line x1="230" y1="82" x2="230" y2="286" stroke="#d8e0e6"></line>
+          <line x1="230" y1="286" x2="720" y2="286" stroke="#d8e0e6"></line>
+          <g font-size="13" fill="#17222b">
+            <text x="24" y="107">Folding display failure</text>
+            <rect x="230" y="90" width="456" height="24" fill="#b0473f"></rect>
+            <text x="696" y="107" font-weight="800">38</text>
+
+            <text x="24" y="147">Hinge / won't open flat</text>
+            <rect x="230" y="130" width="156" height="24" fill="#9b6a21"></rect>
+            <text x="396" y="147" font-weight="800">13</text>
+
+            <text x="24" y="187">Fold-state flex/sensor failure</text>
+            <rect x="230" y="170" width="144" height="24" fill="#176c9d"></rect>
+            <text x="384" y="187" font-weight="800">12</text>
+
+            <text x="24" y="227">Screen protector delamination</text>
+            <rect x="230" y="210" width="120" height="24" fill="#2e7d5b"></rect>
+            <text x="360" y="227" font-weight="800">10</text>
+
+            <text x="24" y="267">Connectivity/audio interconnect</text>
+            <rect x="230" y="250" width="120" height="24" fill="#6454a3"></rect>
+            <text x="360" y="267" font-weight="800">10</text>
+          </g>
+          <g font-size="11" fill="#52616d">
+            <text x="230" y="306">0</text>
+            <text x="346" y="306">10</text>
+            <text x="466" y="306">20</text>
+            <text x="586" y="306">30</text>
+            <text x="706" y="306">40</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Problem family</th>
+              <th>Sample count</th>
+              <th>Editorial read</th>
+              <th>Representative links</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Folding display failure</strong></td>
+              <td>38</td>
+              <td>Highest-volume pain point: black inner screens, ink-like spreading damage, failed inner screen, and replacement difficulty.</td>
+              <td><a href="https://www.ifixit.com/Answers/View/813165/Inside+screen+not+working">Inside screen not working</a>; <a href="https://www.ifixit.com/Answers/View/781195/When+I+flip+open+my+phone+the+screen+is+black">screen black when opened</a>; <a href="https://www.ifixit.com/Answers/View/826946/Screen+turns+black+when+I+touch+it.+Like+ink+spreading.">ink spreading</a>; <a href="https://www.ifixit.com/Answers/View/944198/How+to+fix+my+screen+which+is+a+samsung+Z+fold+6+phone,">Z Fold6 screen fix</a>; <a href="https://www.ifixit.com/Answers/View/813980/Can+I+get+a+replacement+inner+folding+screen+and+instructions">Pixel Fold inner screen</a>; <a href="https://www.ifixit.com/Guide/Samsung+Galaxy+Z+Flip+3+Screen+and+Frame+Assembly+Replacement/163999">Z Flip3 screen guide comments</a>; <a href="https://www.ifixit.com/Answers/View/729732/Samsung+Fold+Dead+Screen">Samsung Fold dead screen</a>; <a href="https://www.ifixit.com/Answers/View/879319/My+second+screen+have+two+black+dots">Z Fold4 black dots</a>; <a href="https://www.ifixit.com/Troubleshooting/Samsung_Android_Phone/Lines%2Bon%2BScreen/564686">Samsung lines on screen troubleshooting</a>; <a href="https://www.ifixit.com/Troubleshooting/Samsung_Android_Phone/Black%2BScreen/575271">Samsung black screen troubleshooting</a>; <a href="https://www.ifixit.com/Guide/Google+Pixel+Fold+Inner+Screen+Assembly+Replacement/162894">Pixel Fold inner screen guide</a>; <a href="https://www.ifixit.com/Answers/Device/Google_Pixel_Fold">Google Pixel Fold Answers</a></td>
+            </tr>
+            <tr>
+              <td><strong>Hinge/frame won't open flat, debris, damage</strong></td>
+              <td>13</td>
+              <td>Strongest bridge between teardown evidence and user pain: grit, bent frames, and hinge resistance often implicate the inner display assembly.</td>
+              <td><a href="https://www.ifixit.com/Answers/View/833858/Samsung+Galaxy+Z+Fold+4+won't+fully+open">Z Fold4 won't fully open</a>; <a href="https://www.ifixit.com/Answers/View/850966/Why+my+phones+folding+display+only+works+when+it's+open+half.">display works only half-open</a>; <a href="https://www.ifixit.com/Answers/Device/Samsung_Galaxy_Z/2">Samsung Galaxy Z Answers page 2</a>; <a href="https://www.ifixit.com/Answers/Device/Motorola_Razr_Phone">Motorola Razr Answers</a>; <a href="https://www.ifixit.com/Answers/Device/Samsung_Galaxy_Z_Flip_Devices">Z Flip device Answers</a>; <a href="https://www.ifixit.com/Answers/View/855591/Why+my+phone+doesn't+open+completely">Z Fold4 does not open completely</a>; <a href="https://www.ifixit.com/Answers/View/752441/Samsung+Fold+4+Frame+Damaged+and+Will+Not+Fully+Open">Fold4 frame damaged</a>; <a href="https://www.ifixit.com/Answers/View/836310/will+not+fully+open">Z Flip4 will not fully open</a>; <a href="https://www.ifixit.com/Answers/View/871052/Z+flip+3+not+opening+180+degree">Z Flip3 not opening 180 degrees</a>; <a href="https://www.ifixit.com/Answers/Device/Samsung_Galaxy_Fold_4">Z Fold4 Answers</a>; <a href="https://www.ifixit.com/Answers/Device/Samsung_Galaxy_Z_Fold_Devices">Z Fold device Answers</a></td>
+            </tr>
+            <tr>
+              <td><strong>Fold-state flex cable or sensor failure</strong></td>
+              <td>12</td>
+              <td>Symptoms triggered by opening/closing point toward flex cables, Hall sensors, sub-screen routing, or upper/lower assembly interconnects.</td>
+              <td><a href="https://www.ifixit.com/Answers/View/803706/Flip+4+screen+stops+coming+back+on+after+I+close+it">Flip4 screen stops coming back on</a>; <a href="https://www.ifixit.com/Answers/View/862859/Sub+screen+not+working+while+upper+speaker+connected.+Flip+4">sub screen and upper speaker</a>; <a href="https://www.ifixit.com/Guide/Samsung+Galaxy+Z+Flip+4+Display+Replacement/181528">Z Flip4 display guide comments</a>; <a href="https://www.ifixit.com/Answers/View/912228/Pixel+9+Pro+Fold+%E2%80%93+won%E2%80%99t+boot+after+shutting+down+at+~20%25+battery">Pixel 9 Pro Fold boot issue</a>; <a href="https://www.ifixit.com/Answers/View/848803/Both+Wi-fi+and+Bluetooth+are+no+longer+able+to+be+turned+on.">Z Fold4 Wi-Fi and Bluetooth fail</a>; <a href="https://www.ifixit.com/Answers/View/857680/Wifi+And+Bluetooth+Not+Working">Z Fold5 Wi-Fi and Bluetooth</a>; <a href="https://www.ifixit.com/Answers/View/825809/Samsung+Z-fold+three+Wi-Fi+not+turning+on">Z Fold3 Wi-Fi not turning on</a></td>
+            </tr>
+            <tr>
+              <td><strong>Screen protector delamination or bubbling</strong></td>
+              <td>10</td>
+              <td>Public confusion remains high because factory-applied protectors look user-removable but may be structurally important.</td>
+              <td><a href="https://www.ifixit.com/Answers/View/730254/How+to+replace+the+screen+protector+on+the+inside+screen">replace inner screen protector</a>; <a href="https://www.ifixit.com/Answers/View/942981/Replacing+inner+screen+protector">replacing inner protector</a>; <a href="https://www.ifixit.com/Answers/Device/Samsung_Galaxy_Z_Flip_Devices">Z Flip device Answers</a>; <a href="https://www.ifixit.com/Answers/Device/Motorola_razr">Motorola razr Answers</a>; <a href="https://www.ifixit.com/Answers/View/831924/Bubbles+under+screen+protector">Z Flip4 screen protector bubbles</a>; <a href="https://www.ifixit.com/Answers/View/792005/Can+I+replace+the+screen+protector+myself">Z Flip3 protector DIY question</a></td>
+            </tr>
+            <tr>
+              <td><strong>Connectivity/audio interconnect symptoms</strong></td>
+              <td>10</td>
+              <td>Speakers, sub screens, and radios can fail in fold-state-specific ways because the device is split across two moving halves.</td>
+              <td><a href="https://www.ifixit.com/Answers/Device/Samsung_Galaxy_Z">Samsung Galaxy Z Answers</a>; <a href="https://www.ifixit.com/Answers/Device/Samsung_Galaxy_Z_Fold3">Galaxy Z Fold3 Answers</a>; <a href="https://www.ifixit.com/Answers/View/826749/Speaker+is+not+working+in+my+z+fold+3">Z Fold3 speaker not working</a>; <a href="https://www.ifixit.com/Answers/View/789980/No+sound+working+on+the+device">Z Fold3 no sound</a>; <a href="https://www.ifixit.com/Answers/View/826713/Why+will+Wi-fi+not+function+on+phone">Z Fold3 Wi-Fi toggle fails</a>; <a href="https://www.ifixit.com/Guide/Google+Pixel+Fold+Bottom+Speaker+Replacement/162895">Pixel Fold bottom speaker guide</a>; <a href="https://www.ifixit.com/Guide/Google+Pixel+Fold+Top+Speaker+Replacement/162780">Pixel Fold top speaker guide</a>; <a href="https://www.ifixit.com/Guide/Google+Pixel+Fold+Lower+Board+Replacement/162778">Pixel Fold lower board guide</a></td>
+            </tr>
+            <tr>
+              <td><strong>Power, battery, and charging shutdowns</strong></td>
+              <td>8</td>
+              <td>Foldables often have split battery architectures and fragile routing; symptoms may appear when folded, opened, or at lower charge.</td>
+              <td><a href="https://www.ifixit.com/Answers/View/840662/Why+my+phone+keeps+shutting+down+when+flipped">phone shuts down when flipped</a>; <a href="https://www.ifixit.com/Answers/View/868488/Phone+not+able+to+hold+charge">not able to hold charge</a>; <a href="https://www.ifixit.com/Answers/View/912228/Pixel+9+Pro+Fold+%E2%80%93+won%E2%80%99t+boot+after+shutting+down+at+~20%25+battery">Pixel 9 Pro Fold boot issue</a>; <a href="https://www.ifixit.com/Answers/View/821802/Why+my+phone+works+only+when+pluged+in+charge,+and+off+when+unpluged">Z Fold4 works only when plugged in</a>; <a href="https://www.ifixit.com/Troubleshooting/Samsung_Android_Phone/Samsung%2BGalaxy%2BBattery%2BDraining%2BFast/481151">Samsung battery draining troubleshooting</a>; <a href="https://www.ifixit.com/Troubleshooting/Samsung_Android_Phone/Not%2BCharging/562997">Samsung not charging troubleshooting</a>; <a href="https://www.ifixit.com/Troubleshooting/Samsung_Android_Phone/Not%2BTurning%2BOn/565281">Samsung not turning on troubleshooting</a>; <a href="https://www.ifixit.com/Guide/Google+Pixel+Fold+Base+Battery+Replacement/162881">Pixel Fold base battery guide</a>; <a href="https://www.ifixit.com/Guide/Google+Pixel+Fold+Flip+Battery+Replacement/162785">Pixel Fold flip battery guide</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="assets-to-create">
+      <h2>Assets to Create</h2>
+      <p class="lead">Event graphics should help visitors move from "cool folding phone" to "I understand what has to bend, slide, seal, survive, and be repaired." Treat each asset as a practical exhibit label: large headline, one clear visual, 3-5 facts, and a QR link back to iFixit coverage.</p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Foldable Timeline Wall</h3>
+          <p><strong>Format:</strong> Wide horizontal wall graphic or long tabletop strip, with five bands: flip/clamshell roots, keyboard/sliding experiments, rigid dual-screen folds, flexible OLED arrival, and the current thin/repairability/multi-fold era.</p>
+          <ul>
+            <li><strong>Look:</strong> Device silhouettes above the line, teardown/wallpaper crops below the line, color-coded by family from <a href="#history">Folding Phone Families</a>.</li>
+            <li><strong>Key beats:</strong> <a href="https://www.thehenryford.org/collections/explore/artifact/182871">StarTAC</a>, Nokia communicator/slider era, <a href="https://www.prnewswire.com/news-releases/order-the-zte-axon-m-on-nov-1-and-experience-the-unlimited-potential-of-dual-screens-exclusively-from-att-300545420.html">ZTE Axon M</a>, <a href="https://www.prnewswire.com/news-releases/royole-introduces-flexpai-the-worlds-first-commercial-foldable-smartphone-with-a-fully-flexible-display-a-combination-of-mobile-phone-and-tablet-300741383.html">Royole FlexPai</a>, <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">Galaxy Fold</a>, <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002">Z Flip</a>, <a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414">Razr</a>, <a href="https://www.ifixit.com/Teardown/Microsoft+Surface+Duo+Teardown/136576">Surface Duo</a>, <a href="https://www.ifixit.com/News/100082/googles-pixel-9-pro-fold-nudges-foldables-toward-repairability">Pixel 9 Pro Fold</a>, <a href="https://consumer.huawei.com/uk/phones/mate-xt-ultimate-design/">Huawei Mate XT</a>.</li>
+            <li><strong>Caption thesis:</strong> Every generation chases the same bargain: more screen in less pocket, paid for in hinge complexity, display fragility, and repair risk.</li>
+            <li><strong>Print extras:</strong> QR codes to <a href="#quick-reference">Quick Reference</a> and the <a href="https://www.ifixit.com/News/44073/bring-out-the-galaxy-z-fold-2s-detailed-insides-with-wallpapers-x-ray-too">Z Fold2 X-ray/wallpaper</a>.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Touch Table Board: Hinge Lab</h3>
+          <p><strong>Format:</strong> One 18x24 board behind the hinge table, plus small tent cards for each chassis or bare hinge.</p>
+          <ul>
+            <li><strong>Look:</strong> Exploded hinge photo/CT still in the center, with callouts for torque, synchronization, dust paths, cable routing, bend radius, and free-stop behavior.</li>
+            <li><strong>Compare:</strong> <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">Galaxy Fold</a> exposed hinge gaps, <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002">Z Flip</a> brush strategy, Oppo waterdrop hinge geometry, Google gearless hinge story, and <a href="https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem">Z Fold8 hinge problem</a>.</li>
+            <li><strong>Interactive prompt:</strong> "Open this slowly. Where does the display go?" Pair each physical hinge with one diagram of the display's bend path.</li>
+            <li><strong>Media:</strong> Loop Shahram's CT stop-motion clips next to the board; add a small explainer link to <a href="https://www.ifixit.com/News/109137/a-guide-to-reading-ct-scans-part-1-what-is-ct">iFixit's CT primer</a> and <a href="https://www.lumafield.com/case-studies/customer-story-ifixit">Lumafield's iFixit case study</a>.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Touch Table Board: Display Stack</h3>
+          <p><strong>Format:</strong> Layer-by-layer board with loose sample layers or transparent overlays visitors can lift in sequence.</p>
+          <ul>
+            <li><strong>Look:</strong> A vertical "sandwich" diagram: protective film, ultra-thin glass/polymer cover, OLED, digitizer, support plates, adhesive, frame.</li>
+            <li><strong>Objects:</strong> Use the Fold8 screen layers if available, plus any cut display assemblies from <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">Galaxy Fold</a>, <a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Z+Flip+Teardown/131002">Z Flip</a>, and <a href="https://www.ifixit.com/Guide/Google+Pixel+9+Pro+Fold+Inner+Screen+Asssembly+Replacement/176926">Pixel 9 Pro Fold inner screen</a>.</li>
+            <li><strong>Caption thesis:</strong> Foldable screens do not just bend; they rely on a managed stack that bends, supports, protects, and still accepts touch input.</li>
+            <li><strong>Visitor question:</strong> "Which layer would you rather scratch, replace, or glue?" Make the repair tradeoff visible.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Touch Table Board: Shape Experiments</h3>
+          <p><strong>Format:</strong> Museum-style lineup with one object per family: clamshell, inward book, outward book, rigid dual-screen, and tri-fold.</p>
+          <ul>
+            <li><strong>Look:</strong> Each device family gets a silhouette, a one-line user promise, and a one-line repair consequence.</li>
+            <li><strong>Objects:</strong> Razr for clamshell, Galaxy/Pixel/Oppo/Honor style book fold, <a href="https://www.ifixit.com/Teardown/Huawei+Mate+Xs+Teardown/132809">Huawei Mate Xs</a> for outward fold, <a href="https://www.ifixit.com/Teardown/Microsoft+Surface+Duo+Teardown/136576">Surface Duo</a> for rigid dual-screen, Mate XT-style imagery for tri-fold.</li>
+            <li><strong>Caption thesis:</strong> The winning form factor is not necessarily the cleverest mechanism; it is the one with the best compromise among pocketability, protection, software, cost, and repairability.</li>
+            <li><strong>Prompt:</strong> Let visitors vote with sticker dots: "Which one should Apple copy, avoid, or reinvent?"</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Patent Explainer Board</h3>
+          <p><strong>Format:</strong> A clean "patent wall" that treats patents as clues, not predictions.</p>
+          <ul>
+            <li><strong>Look:</strong> Patent drawing excerpts arranged as a detective-board grid: hinge path, flexible display support, bend-radius management, crack mitigation, and moving enclosure parts.</li>
+            <li><strong>Must-say label:</strong> "Patents show engineering problems Apple has explored. They do not prove the final iPhone Fold design."</li>
+            <li><strong>Useful links:</strong> <a href="https://patents.google.com/patent/US10551880B1/en">Apple flexible display and hinge patent</a>, <a href="https://patents.google.com/patent/US12164344B2/en">Apple foldable-device hinge patent</a>, <a href="https://patents.google.com/patent/US10943529B2/en">Apple foldable cover/display patent</a>, and the <a href="#iphone-fold">iPhone Fold rumor brief</a>.</li>
+            <li><strong>Story angle:</strong> Show that "crease-free" is not magic; it is a pileup of hinge geometry, layer stiffness, support plates, adhesives, and bend-radius choices.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Repair Reality Board</h3>
+          <p><strong>Format:</strong> A high-contrast scorecard beside broken parts, batteries, display assemblies, hinge pieces, and opening tools.</p>
+          <ul>
+            <li><strong>Look:</strong> Rank foldables from the new <a href="#repairability-scores">Folding Phone Repairability Scores</a> table, then show the repeated failure points from <a href="#answers">Repair Issues</a>.</li>
+            <li><strong>Main chart:</strong> "What usually goes wrong?" five-bar chart: inner screen failures, hinge/frame issues, fold-state cable/sensor faults, screen protector/film problems, and power/battery shutdowns.</li>
+            <li><strong>Hands-on contrast:</strong> Put one easy slab-phone repair part next to one foldable equivalent so the complexity delta is physical, not abstract.</li>
+            <li><strong>Caption thesis:</strong> Foldables are improving, but the big repair villains are still adhesives, fragile flexible displays, hinge contamination, split batteries, and parts/manual availability.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>VR/CT Teardown Station</h3>
+          <p><strong>Format:</strong> Headset station plus a nearby flat-screen loop for people who do not want VR.</p>
+          <ul>
+            <li><strong>Look:</strong> Start with an intact phone exterior, then peel into CT slices, hinge closeups, display stack, and cable routes.</li>
+            <li><strong>Sequence:</strong> "Closed phone" to "hinge motion" to "display bend" to "battery/board split" to "repair bottlenecks."</li>
+            <li><strong>Fallback assets:</strong> Use the <a href="https://www.ifixit.com/News/category/video">iFixit video category</a>, <a href="https://www.youtube.com/@iFixitYourself/search?query=fold">iFixit YouTube foldable search</a>, and teardown images if Sterling's VR display is not ready.</li>
+            <li><strong>Takeaway card:</strong> One QR code to the <a href="#quick-reference">foldable coverage quick reference</a> so editors and guests can chase the full teardown later.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Small Labels and Takeaway Cards</h3>
+          <p><strong>Format:</strong> Reusable 4x6 object labels for touch tables and a one-page handout for editorial talking points.</p>
+          <ul>
+            <li><strong>Each object label:</strong> Device, year, fold family, what to touch, what to notice, repairability score if listed, and one QR link.</li>
+            <li><strong>Suggested labels:</strong> "Hinge with dust path," "Display stack layers," "Split battery layout," "Flexible cable through a moving joint," "Outward fold: exposed screen," and "Waterdrop bend radius."</li>
+            <li><strong>Image pool:</strong> Galaxy Fold, Razr, Z Flip, Surface Duo, Z Fold2 X-ray, Z Fold5/Z Flip5 wallpapers, Pixel 9 Pro Fold, and Fold8.</li>
+            <li><strong>Editorial handout:</strong> Three likely questions and tight answers: why foldables break, why they are hard to repair, and what Apple might realistically improve.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="open-items">
+      <h2>Open Items Before The Event</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Data Confidence</h3>
+          <ul>
+            <li>Replace Answers sample counts with internal query/export counts if available.</li>
+            <li>Have legal/editorial review Apple patent captions so we frame them as evidence of R&amp;D direction, not proof of final product features.</li>
+            <li>Re-check <a href="https://www.bloomberg.com/authors/ARbTQlRLRjE/mark-gurman">Gurman</a>, <a href="https://www.macrumors.com/roundup/iphone-fold/">Kuo/MacRumors</a>, <a href="https://counterpointresearch.com/en/insights/Book-Type-Devices-to-Reach-of-Global-Foldable-Smartphone-Shipments-in-2026">Counterpoint</a>, and <a href="https://www.thelec.net/news/articleList.html?sc_area=A&amp;view_type=sm&amp;sc_word=foldable%20iPhone">The Elec</a> rumors the week of Sept. 8 for last-minute shifts.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>Source Anchors For Continued Research</h3>
+      <ul class="source-list">
+        <li><a href="https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem">iFixit Galaxy Z Fold8 teardown</a></li>
+        <li><a href="https://www.youtube.com/watch?v=bg6iwM4LoVA">iFixit Galaxy Z Fold8 teardown video</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Samsung+Galaxy+Fold+Teardown/122600">iFixit Samsung Galaxy Fold teardown guide</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Motorola+Razr+Teardown/130414">iFixit Motorola Razr teardown guide</a></li>
+        <li><a href="https://www.ifixit.com/Teardown/Huawei+Mate+Xs+Teardown/132809">iFixit Huawei Mate Xs teardown guide</a></li>
+        <li><a href="https://www.ifixit.com/Device/Google_Pixel_Fold">iFixit Google Pixel Fold repair hub</a></li>
+        <li><a href="https://www.ifixit.com/Device/Google_Pixel_9_Pro_Fold">iFixit Google Pixel 9 Pro Fold repair hub</a></li>
+        <li><a href="https://www.ifixit.com/News/100082/googles-pixel-9-pro-fold-nudges-foldables-toward-repairability">iFixit Pixel 9 Pro Fold teardown article</a></li>
+        <li><a href="https://www.ifixit.com/repairability/smartphone-repairability-scores">iFixit smartphone repairability scores</a></li>
+        <li><a href="https://www.macrumors.com/roundup/iphone-fold/">MacRumors iPhone Fold roundup</a></li>
+        <li><a href="https://www.bloomberg.com/news/articles/2026-03-11/apple-s-foldable-iphone-to-feature-ipad-like-interface-when-opened">Bloomberg Gurman foldable iPhone interface report</a></li>
+        <li><a href="https://www.thelec.net/news/articleView.html?idxno=6426">The Elec Samsung Display foldable iPhone supply report</a></li>
+        <li><a href="https://counterpointresearch.com/en/insights/global-foldable-smartphone-asp-forecast-q1-2026">Counterpoint foldable ASP forecast</a></li>
+        <li><a href="https://counterpointresearch.com/en/insights/Book-Type-Devices-to-Reach-of-Global-Foldable-Smartphone-Shipments-in-2026">Counterpoint 2026 book-type foldables forecast</a></li>
+        <li><a href="https://patents.google.com/patent/US10551880B1/en">Apple flexible display and hinge patent</a></li>
+        <li><a href="https://news.samsung.com/us/galaxy-z-flips-inside-look-hideaway-hinge-dual-cam-mechanism/">Samsung Z Flip Hideaway Hinge explainer</a></li>
+        <li><a href="https://www.oppo.com/en/newsroom/press/oppo-findn/">Oppo Find N Flexion Hinge press release</a></li>
+        <li><a href="https://store.google.com/us/magazine/google-pixel-design-story?hl=en-US">Google Pixel 10 Pro Fold gearless hinge design story</a></li>
+        <li><a href="https://www.thehenryford.org/collections/explore/artifact/182871">The Henry Ford: StarTAC Flip Phone, 1996</a></li>
+        <li><a href="https://www.prnewswire.com/news-releases/royole-introduces-flexpai-the-worlds-first-commercial-foldable-smartphone-with-a-fully-flexible-display-a-combination-of-mobile-phone-and-tablet-300741383.html">Royole FlexPai launch release</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>Working draft for internal prep. Update links and counts as teardown, CT, VR, and Answers data land.</p>
+  </footer>
+</body>
+</html>
