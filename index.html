@@ -146,6 +146,31 @@
       letter-spacing: 0;
     }
 
+    .heading-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .heading-link::after {
+      content: " #";
+      color: var(--blue);
+      font-size: 0.8em;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .heading-link:hover,
+    .heading-link:focus-visible {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 0.16em;
+    }
+
+    .heading-link:hover::after,
+    .heading-link:focus-visible::after {
+      opacity: 1;
+    }
+
     h3 {
       margin: 24px 0 8px;
       font-size: 1.05rem;
@@ -462,7 +487,7 @@
 
   <main class="wrap">
     <section id="quick-reference">
-      <h2>Quick Reference: iFixit Folding Phone Coverage</h2>
+      <h2><a class="heading-link" href="#quick-reference">Quick Reference: iFixit Folding Phone Coverage</a></h2>
       <p class="lead">Working inventory of public iFixit teardown, video, device, repairability, wallpaper, and analysis links related to folding smartphones. This should be treated as the press room launchpad: first stop for fact-checking talks, printed labels, and artifact captions.</p>
       <p class="note">Scope note: iFixit uses a mix of teardown guides, News posts, YouTube-first posts, and device pages. Rows marked "device page" point to the iFixit repair hub when the teardown is embedded there rather than published as a standalone step-by-step guide.</p>
 
@@ -763,7 +788,7 @@
     </section>
 
     <section id="touch-tables">
-      <h2>Touch Tables And Printed Display Starting Plan</h2>
+      <h2><a class="heading-link" href="#touch-tables">Touch Tables And Printed Display Starting Plan</a></h2>
       <p class="lead">The Slack inventory already suggests four table stories: a foldable museum, hinges, display architecture, and size/shape experiments. The cleanest event layout is to make each table answer one tactile question.</p>
 
       <div class="grid">
@@ -823,7 +848,7 @@
     </section>
 
     <section id="history">
-      <h2>Form-Factor History: From Flip Phones To Folding Smartphones</h2>
+      <h2><a class="heading-link" href="#history">Form-Factor History: From Flip Phones To Folding Smartphones</a></h2>
       <p class="lead">For the event, "folding phone" should mean more than flexible OLED. The pre-smartphone era established the user promise - big interaction surface that disappears into a pocket - and the modern foldable era keeps trying to deliver that promise without sacrificing durability.</p>
 
       <div class="family-graphic" aria-labelledby="family-graphic-title">
@@ -1075,7 +1100,7 @@
     </section>
 
     <section id="repairability-scores">
-      <h2>Folding Phone Repairability Scores</h2>
+      <h2><a class="heading-link" href="#repairability-scores">Folding Phone Repairability Scores</a></h2>
       <p class="lead">Foldable and dual-screen hinged smartphones listed on iFixit's <a href="https://www.ifixit.com/repairability/smartphone-repairability-scores">current smartphone repairability scores</a> and <a href="https://www.ifixit.com/repairability/legacy-smartphone-scores">legacy smartphone scores</a>, ranked highest to lowest. iFixit notes that its scoring rubric changes over time, so the score is most useful when paired with the teardown context and the phone's release cohort.</p>
       <p class="note">Scope note: this table includes phones that fold or hinge as smartphones. It excludes sliders like the Nokia 8110 4G because they are moving-form-factor phones, but not folding phones.</p>
 
@@ -1247,7 +1272,7 @@
     </section>
 
     <section id="iphone-fold">
-      <h2>iPhone Fold Rumor Brief</h2>
+      <h2><a class="heading-link" href="#iphone-fold">iPhone Fold Rumor Brief</a></h2>
       <p class="lead">As of Aug. 14, 2026, Apple has not announced a foldable iPhone. The rumor has been public for roughly a decade, with Apple patent filings reaching back to 2015 priority dates and mainstream reporting now converging on a fall 2026 book-style launch.</p>
 
       <div class="grid">
@@ -1350,7 +1375,7 @@
     </section>
 
     <section id="hinges">
-      <h2>Hinges: What To Explain At The Table</h2>
+      <h2><a class="heading-link" href="#hinges">Hinges: What To Explain At The Table</a></h2>
       <p class="lead">A phone hinge is a motion-control, display-support, cable-routing, ingress-management system disguised as a hinge. The useful refrain: a door hinge rotates two rigid objects; a foldable phone hinge protects a fragile moving display stack while the whole device is squeezed, dropped, pocketed, and repaired.</p>
 
       <div class="grid">
@@ -1430,7 +1455,7 @@
     </section>
 
     <section id="answers">
-      <h2>iFixit Answers And Guide Comments: Common Foldable Problems</h2>
+      <h2><a class="heading-link" href="#answers">iFixit Answers And Guide Comments: Common Foldable Problems</a></h2>
       <p class="lead">These counts are directional, not official iFixit analytics. They come from a sampled review of visible iFixit Answers discussions and guide comments, deduping obvious repeats. For printed claims, use this as a lead list and confirm with internal Answers/export data if available.</p>
 
       <div class="chart-panel" aria-label="Bar chart of common folding phone problems">
@@ -1525,7 +1550,7 @@
     </section>
 
     <section id="assets-to-create">
-      <h2>Assets to Create</h2>
+      <h2><a class="heading-link" href="#assets-to-create">Assets to Create</a></h2>
       <p class="lead">Event graphics should help visitors move from "cool folding phone" to "I understand what has to bend, slide, seal, survive, and be repaired." Treat each asset as a practical exhibit label: large headline, one clear visual, 3-5 facts, and a QR link back to iFixit coverage.</p>
 
       <div class="grid">
@@ -1620,7 +1645,7 @@
     </section>
 
     <section id="open-items">
-      <h2>Open Items Before The Event</h2>
+      <h2><a class="heading-link" href="#open-items">Open Items Before The Event</a></h2>
       <div class="grid">
         <article class="card">
           <h3>Data Confidence</h3>
